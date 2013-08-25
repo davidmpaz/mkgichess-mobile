@@ -1,0 +1,163 @@
+/*
+
+## Heading and Paragraph
+
+```
+<h3 class="fixie"></h3>
+<p class="fixie"></p>
+```
+*/
+
+/* set it to min height*/
+.navbar-inner{
+    height: 40px;
+}
+
+.h3 {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Squada One';
+  font-weight: normal;
+  margin: 0;
+  line-height: 1em;
+}
+
+h2 { font-size: 40px; }
+h3 { font-size: 36px; }
+h4 { font-size: 32px; }
+h5 { font-size: 28px; }
+h6 { font-size: 24px; }
+
+/*
+
+
+
+/*
+
+## Action buttons
+
+adadasd
+<span class="fixie"></span>
+```
+<ul class="action-list">
+  <li><a href="">download zip</a></li>
+  <li><a href="">view the source</a></li>
+  <li><a href="">watch</a></li>
+  <li><a href="">fork</a></li>
+</ul>
+```
+*/
+
+.action-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.action-list li {
+
+  text-align: center;
+}
+.action-list li a {
+  font-size: 34px;
+  color: #594936;
+  font-weight: bold;
+}
+.action-list li a:visited {
+  color: #594936;
+}  
+
+
+
+body {
+  background: #dddddd url('../img/page_bg.png');
+  color: #11141b;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 14px;
+}
+
+.logo {
+  color: #5a4935;
+  padding: 0;
+  margin: 0;
+  text-shadow: 0 1px 1px #fff;
+  text-align: center;
+  font-family: 'Squada One';
+  font-size: 112px;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+/*
+
+Boilerplate Stamp!
+
+```
+<div class="bp_logo"></div>
+```
+*/
+.bp_logo {
+  width: 280px;
+  height: 266px;
+  background: url('../img/backboneboilerplate_logo.png');
+}
+
+#springydemo {
+  border-radius: 5px;
+  background-color: rgba(0,0,0,0.2);
+}
+
+.container {
+  margin-bottom: 150px;
+  /*margin-top: 4em;*/
+}
+
+code, pre {
+  background-color: #F8F8F8;
+  border: solid 1px #ccc;
+  border-radius: 3px;
+  display: block;
+  font-family: monospace;
+  padding: 10px;
+}
+
+/*
+## Logo
+```
+<h1 class="logo">BACKBONE BOILERPLATE</h1>
+```
+
+## Colors
+
+For the page header and links  
+\#5a4935
+
+For body text  
+\#11141b
+
+For Navigation links  
+\#515151
+
+For Navigation current state  
+\#c0c0c0
+
+Body Background color  
+\#dddddd
+
+hr top  
+\#919191  
+hr bottom  
+\#ececec
+
+
+## Fonts
+
+Body  
+PT Sans
+
+Header  
+Squada One
+
+*/
