@@ -52,7 +52,8 @@ define([
                 managerPage.render();
             });
         });
-        Backbone.history.start();
+
+        Backbone.history.start({ pushState : false });
     };
     return {
         initialize: initialize

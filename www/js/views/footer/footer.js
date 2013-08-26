@@ -13,15 +13,27 @@ define([
         },
         render: function () {
             $(this.el).html(footerTemplate);
+            $('a[href="' + window.location.hash + '"]').addClass('active');
+
             this.renderSpringy();
             Events.on('viewCreated', this.renderSpringy, this);
+
+            // trigger the viewRendered event to re-enhance the page
+            Events.trigger('viewRendered', {elem: 'body', enhanceType: 'create'});
+        },
+        events: {
+            'click a': 'highlightMenuItem'
+        },
+        highlightMenuItem: function (ev) {
+            $('.active').removeClass('active');
+            $(ev.currentTarget).addClass('active');
         },
         renderSpringy: function () {
-            var that = this;
             var graph = new Springy();
+
             var generateGraph = function (context, parentName, first) {
                 if (typeof first === 'undefined') {
-                    var first = graph.newNode({label: parentName});
+                    first = graph.newNode({label: parentName});
                 }
                 _.each(context.children, function (view, viewname) {
                     var second = graph.newNode({label: viewname + ' (' + view.cid + ')'});
@@ -34,7 +46,7 @@ define([
             generateGraph(this.options.appView, 'AppView');
 
             $('#springydemo').remove();
-            $('.springy-container').html('<canvas id="springydemo" width="960px" height="820"></canvas>');
+            $('.springy-container').html('<canvas id="springydemo"></canvas>');
             var springy = $('#springydemo');
             springy.springy({
                 graph: graph
