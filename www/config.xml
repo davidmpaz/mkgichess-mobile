@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.cordova.backboneboilerplate" version="0.0.1"
         xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>CordovaBackbone</name>
+    <name>CBB</name>
     <description>
-        A sample and starting point of Apache Cordova application with
+        A sample and starting point of Apache Cordova application with jQuery Mobile
         Backbone/RequireJs integration. Based on http://backboneboilerplate.com project.
     </description>
     <author email="davidmpaz@gmail.com" href="https://github.com/davidmpaz">
