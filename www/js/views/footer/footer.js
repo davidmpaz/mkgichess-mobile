@@ -34,7 +34,7 @@ define([
             generateGraph(this.options.appView, 'AppView');
 
             $('#springydemo').remove();
-            $('.springy-container').html('<canvas id="springydemo" width="960px" height="820"></canvas">');
+            $('.springy-container').html('<canvas id="springydemo" width="960px" height="820"></canvas>');
             var springy = $('#springydemo');
             springy.springy({
                 graph: graph
