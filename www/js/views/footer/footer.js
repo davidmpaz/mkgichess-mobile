@@ -12,15 +12,6 @@ define([
         },
         render: function () {
             $(this.el).html(footerTemplate);
-            $('a[href="' + window.location.hash + '"]').addClass('active');
-            console.info('Footer rendered.');
-        },
-        events: {
-            'click a': 'highlightMenuItem'
-        },
-        highlightMenuItem: function (ev) {
-            $('.active').removeClass('active');
-            $(ev.currentTarget).addClass('active');
         }
     });
 
