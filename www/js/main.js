@@ -7,6 +7,7 @@ require.config({
         jqm: 'libs/jquery/jquery.mobile',
         // jquery mobile configuration
         jqmc: 'libs/jquery/jquery.mobile.config',
+        jqmn: 'libs/jquery/jqmNavigator',
         underscore: 'libs/underscore/underscore-min', // https://github.com/amdjs
         lodash: 'libs/lodash/lodash', // alternative to underscore
         backbone: 'libs/backbone/backbone-min', // https://github.com/amdjs
@@ -33,7 +34,7 @@ require([
     'vm',
     'app',
     'cordova',
-    'jquery', 'jqm', 'jqmc'
+    'jquery', 'jqm', 'jqmc', 'jqmn'
 ], function (AppView, Router, Vm, CordovaApp) {
     var appView = Vm.create({}, 'AppView', AppView);
     appView.render();

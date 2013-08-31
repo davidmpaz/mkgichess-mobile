@@ -13,6 +13,7 @@ define([
             'backbone/:section': 'backbone',
             'backbone': 'backbone',
             'manager': 'manager',
+            'games': 'games',
 
             // Default - catch all
             '*actions': 'defaultAction'
@@ -22,16 +23,18 @@ define([
     var initialize = function (options) {
         var appView = options.appView;
         var router = new AppRouter(options);
+
         router.on('route:optimize', function () {
             require(['views/optimize/page'], function (OptimizePage) {
                 var optimizePage = Vm.create(appView, 'OptimizePage', OptimizePage);
                 optimizePage.render();
             });
         });
-        router.on('route:defaultAction', function (actions) {
+        router.on('route:defaultAction', function(actions){
             require(['views/dashboard/page'], function (DashboardPage) {
-                var dashboardPage = Vm.create(appView, 'DashboardPage', DashboardPage);
+                var dashboardPage = Vm.create(appView, 'DashboardPage', DashboardPage, {actions: actions});
                 dashboardPage.render();
+                $.mobile.jqmNavigator.pushView(appView);
             });
         });
         router.on('route:modules', function () {
@@ -50,6 +53,12 @@ define([
             require(['views/manager/page'], function (ManagerPage) {
                 var managerPage = Vm.create(appView, 'ManagerPage', ManagerPage);
                 managerPage.render();
+            });
+        });
+        router.on('route:games', function () {
+            require(['views/game/games'], function (GamePage) {
+                var gamePage = Vm.create(appView, 'GamePage', GamePage);
+                gamePage.render();
             });
         });
 
