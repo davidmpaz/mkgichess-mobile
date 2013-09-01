@@ -12,7 +12,13 @@ define([
             this.$el.html(this.pageTemplate());
 
             // trigger the viewRendered event to re-enhance the new content added
-            Events.trigger('viewRendered', {elem: 'body', enhanceType: 'create'});
+            Events.trigger('viewRendered');
+        },
+        events: {
+            'swiperight': function(){
+                // navigate to game list
+                $.mobile.navigate('/');
+            }
         },
         pageTemplate: function () {
 

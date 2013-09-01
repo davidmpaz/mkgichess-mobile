@@ -9,7 +9,14 @@ define([
         render: function () {
 
             $(this.el).html(dashboardPageTemplate);
+        },
+        events: {
+            'swipeleft': function(){
+                // navigate to game list
+                $.mobile.navigate('games');
+            }
         }
+
     });
     return DashboardPage;
 });

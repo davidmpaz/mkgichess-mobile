@@ -34,7 +34,7 @@ define([
             require(['views/dashboard/page'], function (DashboardPage) {
                 var dashboardPage = Vm.create(appView, 'DashboardPage', DashboardPage, {actions: actions});
                 dashboardPage.render();
-                $.mobile.jqmNavigator.pushView(appView);
+                $.mobile.jqmNavigator.pushView(appView, {transition:'slide', showLoadMsg: true});
             });
         });
         router.on('route:modules', function () {
