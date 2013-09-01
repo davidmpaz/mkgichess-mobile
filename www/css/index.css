@@ -43,6 +43,13 @@ body {
     padding:0px;
     text-transform:uppercase;
     width:100%;
+
+    /* Swipe works with mouse as well but often causes text selection. */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 /* Portrait layout (default) */
@@ -78,6 +85,13 @@ h1 {
     text-align:center;
 }
 
+/* Arrow only buttons in the header. */
+.ui-header .ui-btn {
+    background: none;
+    border: none;
+    top: 9px;
+}
+
 .event {
     border-radius:4px;
     -webkit-border-radius:4px;
@@ -107,9 +121,4 @@ h1 {
     from { opacity: 1.0; }
     50% { opacity: 0.4; }
     to { opacity: 1.0; }
-}
- 
-.blink {
-    animation:fade 3000ms infinite;
-    -webkit-animation:fade 3000ms infinite;
 }
