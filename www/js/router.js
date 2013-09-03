@@ -14,6 +14,8 @@ define([
             'backbone': 'backbone',
             'manager': 'manager',
             'games': 'games',
+            'settings': 'settings',
+            'help': 'help',
 
             // Default - catch all
             '*actions': 'defaultAction'
@@ -59,6 +61,18 @@ define([
             require(['views/game/games'], function (GamePage) {
                 var gamePage = Vm.create(appView, 'GamePage', GamePage);
                 gamePage.render();
+            });
+        });
+        router.on('route:settings', function () {
+            require(['views/settings/settings'], function (SettingsPage) {
+                var settingsPage = Vm.create(appView, 'SettingsPage', SettingsPage);
+                settingsPage.render();
+            });
+        });
+        router.on('route:help', function () {
+            require(['views/help/help'], function (HelpPage) {
+                var helpPage = Vm.create(appView, 'HelpPage', HelpPage);
+                helpPage.render();
             });
         });
 
