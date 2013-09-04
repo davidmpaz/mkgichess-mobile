@@ -2,18 +2,31 @@
     <ul>
         <li><a href="#/" data-icon="home" data-iconpos="notext"
                data-shadow="false" data-iconshadow="false"
-               class="ui-icon-nodisc">Dashboard</a></li>
-        <li><a href="#/modules" data-icon="gear" data-iconpos="notext"
+               class="ui-icon-nodisc">Home</a></li>
+        <li><a href="#/help" data-icon="info" data-iconpos="notext"
                dat-shadow="false" data-iconshadow="false"
-               class="ui-icon-nodisc">Modules</a></li>
-        <li><a href="#/optimize" data-icon="wrench" data-iconpos="notext"
-               data-shadow="false" data-iconshadow="false"
-               class="ui-icon-nodisc">Optimize</a></li>
-        <li><a href="#/manager" data-icon="file" data-iconpos="notext"
-               data-shadow="false" data-iconshadow="false"
-               class="ui-icon-nodisc">Views</a></li>
+               class="ui-icon-nodisc">Help</a></li>
         <li><a href="#/games" data-icon="th-list" data-iconpos="notext"
                data-shadow="false" data-iconshadow="false"
                class="ui-icon-nodisc">Games</a></li>
+        <li><a href="#more-menu" data-icon="collapse-top" data-iconpos="notext"
+               data-shadow="false" data-iconshadow="false" id="more-menu-btn"
+               class="ui-icon-nodisc">More</a></li>
     </ul>
+</div>
+
+<div id="more-menu" data-role="popup" data-overlay-theme="a"
+     data-theme="e" data-position-to="#footer-navbar"
+     class="ui-content ui-btn-left" data-icon="delete" data-iconpos="notext"
+     data-transition="slideup">
+
+    <div data-role="controlgroup" data-type="horizontal" data-mini="true"
+         data-corners="false">
+        <a href="#/profile" data-role="button" data-icon="user"
+           data-theme="b">Profile</a>
+        <a href="#/ranking" data-role="button" data-icon="list-ol"
+           data-theme="b">Ranking</a>
+        <a href="#/invitation" data-role="button" data-icon="share"
+           data-theme="b">Invite</a>
+    </div>
 </div>
