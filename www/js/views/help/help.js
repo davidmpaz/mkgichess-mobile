@@ -21,7 +21,9 @@ define([
             Events.trigger('viewRendered');
         },
         events: {
-            'click .jqm-open-quicklink-panel': 'showMenu',
+            'click .jqm-deeplink': 'showMenu',
+            'swiperight': 'showMenu',
+            'swipeleft': 'selectSection',
             'click #help-menu-panel a': 'selectSection'
         },
         showMenu: function (ev) {
