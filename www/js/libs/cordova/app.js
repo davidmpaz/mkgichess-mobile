@@ -1,7 +1,8 @@
 
 define([
+    'jquery',
     'libs/cordova/datastore'
-], function (store) {
+], function ($, store) {
 
     var CordovaApp = {
         store: store,
@@ -27,6 +28,10 @@ define([
         // function, we must explicity call 'CordovaApp.receivedEvent(...);'
         onDeviceReady: function () {
             // do cordova stuff here
+            document.addEventListener("menubutton", CordovaApp.onMenuPressed, false);
+        },
+        onMenuPressed: function () {
+            $( "#more-menu-btn" ).click();
         },
         saveSettings: function(settings){
             window.localStorage.setItem('settings', window.JSON.stringify(settings));
