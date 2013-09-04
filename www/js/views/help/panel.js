@@ -9,8 +9,6 @@ define([
         id: 'help-menu-panel',
         el: '#help-menu-panel',
         intialize: function () {
-            this.$el.attr('data-role', 'panel');
-            this.$el.attr('data-display', 'push');
         },
         render: function () {
             $(this.options.parentView.$el).append(panelTemplate);

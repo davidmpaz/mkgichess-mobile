@@ -14,12 +14,6 @@ define([
             // trigger the viewRendered event to re-enhance the new content added
             Events.trigger('viewRendered');
         },
-        events: {
-            'swiperight': function(){
-                // navigate to game list
-                $.mobile.navigate('/');
-            }
-        },
         pageTemplate: function () {
 
             var str = '<ul id="game-list" data-role="listview" data-count-theme="c" data-inset="true">';

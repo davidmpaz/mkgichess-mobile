@@ -5,12 +5,11 @@ define([
     'vm',
     'events',
     'views/help/panel',
-    'text!templates/help/help.html',
+    'text!templates/help/help.html'
 ], function ($, _, Backbone, Vm, Events, PanelView, helpTemplate) {
     var HelpView = Backbone.View.extend({
         el: '.page',
         intialize: function () {
-
         },
         render: function () {
             $(this.el).html(helpTemplate);
@@ -28,11 +27,21 @@ define([
         },
         showMenu: function (ev) {
             ev.preventDefault();
-            $("#help-menu-panel").panel("open");
+
+            if ($.mobile.activePage.jqmData("panel") !== "open") {
+                if (ev.type === "swiperight") {
+                    $("#help-menu-panel").panel("open");
+                }
+            }
         },
         selectSection: function (ev) {
             ev.preventDefault();
-            $("#help-menu-panel").panel('close');
+
+            if ($.mobile.activePage.jqmData("panel") === "open") {
+                if (ev.type === "swiperight") {
+                    $("#help-menu-panel").panel("close");
+                }
+            }
             //TODO make the page goes to the selected section
         }
     });
