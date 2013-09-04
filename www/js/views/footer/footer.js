@@ -3,7 +3,7 @@ define([
     'lodash',
     'backbone',
     'events',
-    'text!templates/footer/footer.html',
+    'text!templates/footer/footer.html'
 ], function ($, _, Backbone, Events, footerTemplate) {
     var FooterView = Backbone.View.extend({
         el: '.footer',
