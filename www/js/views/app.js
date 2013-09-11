@@ -7,6 +7,12 @@ define([
 ], function ($, _, Backbone, Vm, layoutTemplate) {
     var AppView = Backbone.View.extend({
         el: 'body',
+        events: {
+            'click a#back-button': function (ev) {
+                ev.preventDefault();
+                window.history.back();
+            }
+        },
         initialize: function () {
         },
         render: function () {

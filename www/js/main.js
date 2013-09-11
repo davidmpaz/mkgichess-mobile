@@ -5,8 +5,7 @@ require.config({
         // Major libraries
         jquery: 'libs/jquery/jquery',
         jqm: 'libs/jquery/jquery.mobile',
-        // jquery mobile configuration
-        jqmc: 'libs/jquery/jquery.mobile.config',
+        jqmc: 'libs/jquery/jquery.mobile.config', // jquery mobile configuration
         jqmn: 'libs/jquery/jqmNavigator',
         underscore: 'libs/underscore/underscore-min', // https://github.com/amdjs
         lodash: 'libs/lodash/lodash', // alternative to underscore
@@ -39,8 +38,8 @@ require([
     var appView = Vm.create({}, 'AppView', AppView);
     appView.render();
 
-    Router.initialize({appView: appView});  // The router now has a copy of all main appview
+    Router.initialize({appView: appView});  // The router now has a copy of all main app view
 
-    // initialize corodva application
+    // initialize cordova application
     CordovaApp.initialize();
 });
