@@ -1,13 +1,13 @@
 define([
     'jquery',
     'lodash',
-    'backbone',
+    'baseview',
     'vm',
     'events',
     'views/help/panel',
     'text!templates/help/help.html'
-], function ($, _, Backbone, Vm, Events, PanelView, helpTemplate) {
-    var HelpView = Backbone.View.extend({
+], function ($, _, BaseView, Vm, Events, PanelView, helpTemplate) {
+    var HelpView = BaseView.extend({
         el: '.page',
         intialize: function () {
         },
@@ -16,14 +16,12 @@ define([
 
             var panelView = Vm.create(this, 'PanelView', PanelView, {parentView: this});
             panelView.render();
-
-            Events.trigger('viewRendered');
         },
         events: {
             'click .jqm-deeplink': 'showMenu',
             'swiperight': 'showMenu',
             'swipeleft': 'selectSection',
-            'click #help-menu-panel a': 'selectSection'
+            'click #help-menu-panel a': 'showMenu'
         },
         showMenu: function (ev) {
             ev.preventDefault();

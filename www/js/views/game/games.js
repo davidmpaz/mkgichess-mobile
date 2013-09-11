@@ -1,18 +1,15 @@
 define([
     'jquery',
     'lodash',
-    'backbone',
+    'baseview',
     'events',
     'libs/cordova/data',
     'text!templates/game/gameListPart.html'
-], function ($, _, Backbone, Events, mockdata, gameListTemplatePart) {
-    var GameListPage = Backbone.View.extend({
+], function ($, _, BaseView, Events, mockdata, gameListTemplatePart) {
+    var GameListPage = BaseView.extend({
         el: '.page',
         render: function () {
             this.$el.html(this.pageTemplate());
-
-            // trigger the viewRendered event to re-enhance the new content added
-            Events.trigger('viewRendered');
         },
         pageTemplate: function () {
 

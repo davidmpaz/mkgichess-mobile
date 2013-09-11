@@ -1,12 +1,11 @@
 define([
     'jquery',
     'lodash',
-    'backbone',
+    'baseview',
     'app',
-    'events',
     'text!templates/dashboard/page.html'
-], function ($, _, Backbone, CordovaApp, Events, dashboardPageTemplate) {
-    var DashboardPage = Backbone.View.extend({
+], function ($, _, BaseView, CordovaApp, dashboardPageTemplate) {
+    var DashboardPage = BaseView.extend({
         el: '.page',
         render: function () {
 
@@ -18,9 +17,6 @@ define([
             } else {
                 $(this.el).html(dashboardPageTemplate);
             }
-
-            // trigger the viewRendered event to re-enhance the new content added
-            Events.trigger('viewRendered');
         }
     });
     return DashboardPage;

@@ -8,14 +8,10 @@ define([
     var AppRouter = Backbone.Router.extend({
         routes: {
             // Pages
-            'modules': 'modules',
-            'optimize': 'optimize',
-            'backbone/:section': 'backbone',
-            'backbone': 'backbone',
-            'manager': 'manager',
             'games': 'games',
             'settings': 'settings',
             'help': 'help',
+            'home': 'home',
 
             // Default - catch all
             '*actions': 'defaultAction'
@@ -26,53 +22,36 @@ define([
         var appView = options.appView;
         var router = new AppRouter(options);
 
-        router.on('route:optimize', function () {
-            require(['views/optimize/page'], function (OptimizePage) {
-                var optimizePage = Vm.create(appView, 'OptimizePage', OptimizePage);
-                optimizePage.render();
-            });
-        });
-        router.on('route:defaultAction', function(actions){
+        router.on('route:defaultAction', function(){
             require(['views/dashboard/page'], function (DashboardPage) {
-                var dashboardPage = Vm.create(appView, 'DashboardPage', DashboardPage, {actions: actions});
-                dashboardPage.render();
-                $.mobile.jqmNavigator.pushView(appView, {transition:'slide', showLoadMsg: true});
+                var dashboardPage = Vm.create(appView, 'DashboardPage', DashboardPage);
+                dashboardPage.enhance();
+                // first page rendered
+                $.mobile.jqmNavigator.pushView(appView, {transition:'none'});
             });
         });
-        router.on('route:modules', function () {
-            require(['views/modules/page'], function (ModulePage) {
-                var modulePage = Vm.create(appView, 'ModulesPage', ModulePage);
-                modulePage.render();
-            });
-        });
-        router.on('route:backbone', function (section) {
-            require(['views/backbone/page'], function (BackbonePage) {
-                var backbonePage = Vm.create(appView, 'BackbonePage', BackbonePage, {section: section});
-                backbonePage.render();
-            });
-        });
-        router.on('route:manager', function () {
-            require(['views/manager/page'], function (ManagerPage) {
-                var managerPage = Vm.create(appView, 'ManagerPage', ManagerPage);
-                managerPage.render();
+        router.on('route:home', function () {
+            require(['views/dashboard/page'], function (DashboardPage) {
+                var dashboardPage = Vm.create(appView, 'DashboardPage', DashboardPage);
+                dashboardPage.fadeIn();
             });
         });
         router.on('route:games', function () {
             require(['views/game/games'], function (GamePage) {
                 var gamePage = Vm.create(appView, 'GamePage', GamePage);
-                gamePage.render();
+                gamePage.fadeIn();
             });
         });
         router.on('route:settings', function () {
             require(['views/settings/settings'], function (SettingsPage) {
                 var settingsPage = Vm.create(appView, 'SettingsPage', SettingsPage);
-                settingsPage.render();
+                settingsPage.fadeIn();
             });
         });
         router.on('route:help', function () {
             require(['views/help/help'], function (HelpPage) {
                 var helpPage = Vm.create(appView, 'HelpPage', HelpPage);
-                helpPage.render();
+                helpPage.fadeIn();
             });
         });
 

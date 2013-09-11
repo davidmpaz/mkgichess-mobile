@@ -1,12 +1,12 @@
 define([
     'jquery',
     'lodash',
-    'backbone',
+    'baseview',
     'app',
     'events',
     'text!templates/settings/page.html'
-], function ($, _, Backbone, CordovaApp, Events, settingsPageTemplate) {
-    var DashboardPage = Backbone.View.extend({
+], function ($, _, BaseView, CordovaApp, Events, settingsPageTemplate) {
+    var DashboardPage = BaseView.extend({
         el: '.page',
         render: function () {
 
@@ -14,9 +14,6 @@ define([
                 tpl = _.template(settingsPageTemplate, settings, {variable: 'setting'});
 
             $(this.el).html(tpl);
-
-            // trigger the viewRendered event to re-enhance the new content added
-            Events.trigger('viewRendered');
         },
         events: {
             // navigate to game list
