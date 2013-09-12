@@ -24,7 +24,7 @@ define([
 
         router.on('route:defaultAction', function(){
             require(['views/dashboard/page'], function (DashboardPage) {
-                var dashboardPage = Vm.create(appView, 'DashboardPage', DashboardPage);
+                var dashboardPage = Vm.create(appView, 'DashboardPage', DashboardPage, {initialPage: true});
                 dashboardPage.enhance();
                 // first page rendered
                 $.mobile.jqmNavigator.pushView(appView, {transition:'none'});
@@ -32,7 +32,7 @@ define([
         });
         router.on('route:home', function () {
             require(['views/dashboard/page'], function (DashboardPage) {
-                var dashboardPage = Vm.create(appView, 'DashboardPage', DashboardPage);
+                var dashboardPage = Vm.create(appView, 'DashboardPage', DashboardPage, {initialPage: false});
                 dashboardPage.fadeIn();
             });
         });

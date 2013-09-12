@@ -1,7 +1,8 @@
 <h1>Settings</h1>
 
 <p>Settings are needed to properly play chess with MKGI mobile. Remember always test the
-    inputed <code>Server Url</code> before continue.</p>
+    inputed <code>Server Url</code> before continue.
+</p>
 
 <form id="settings-form" enctype="multipart/form-data">
 
@@ -28,10 +29,16 @@
            value="<%= setting.age %>" min="10" max="60">
 
     <label for="server" class="ui-hidden-accessible">Server Url:</label>
+
     <div data-role="fieldcontain" data-type="horizontal">
         <input type="url" name="server" id="server" placeholder="Server Base Url"
                value="<%= setting.server %>">
-        <a href="#" data-role="button" data-inline="true">Test</a>
+        <a href="#" data-role="button" data-inline="true" data-mini="true"
+           data-theme="a" data-icon="question-sign"
+           data-shadow="false" data-iconshadow="false">Test</a>
+        <a href="#" data-role="button" data-inline="true" data-mini="true"
+           data-theme="a" data-icon="save"
+           data-shadow="false" data-iconshadow="false">Save</a>
     </div>
 
 </form>
