@@ -16,7 +16,14 @@ define(function () {
                 "move_count": 17,
                 "last_move": "2013-Aug-15 04:15"
             }
-        ]
+        ],
+        settings: {
+            "username": "David",
+            "password": "ok",
+            "gender": "m",
+            "age": "29",
+            "server": "http://chess.uclv.edu.cu"
+        }
     };
 
     return mockupdata;

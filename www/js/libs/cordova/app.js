@@ -2,17 +2,14 @@
 define([
     'jquery',
     'libs/cordova/datastore'
-], function ($, store) {
+], function ($, DataStore) {
 
     var CordovaApp = {
-        store: store,
+        store: DataStore,
         user_settings: undefined,
 
         // Application Constructor
         initialize: function () {
-            this.loadSettings();
-
-            this.store.initialize();
             this.bindEvents();
         },
         // Bind Event Listeners
@@ -29,6 +26,8 @@ define([
         onDeviceReady: function () {
             // do cordova stuff here
             document.addEventListener("menubutton", CordovaApp.onMenuPressed, false);
+            CordovaApp.store.initialize();
+            CordovaApp.loadSettings();
         },
         onMenuPressed: function () {
             $( "#more-menu-btn" ).click();
@@ -37,14 +36,9 @@ define([
             window.localStorage.setItem('settings', window.JSON.stringify(settings));
         },
         loadSettings: function(){
-            this.user_settings = window.JSON.parse(window.localStorage.getItem("settings"));
+            CordovaApp.user_settings = window.JSON.parse(window.localStorage.getItem("settings"));
 
-            // set some defaults
-            if(typeof this.user_settings === 'undefined' || this.user_settings === null){
-                this.user_settings = {username: '', password: '', gender: 'm', age: 10};
-            }
-
-            return this.user_settings;
+            return CordovaApp.user_settings;
         }
     };
 

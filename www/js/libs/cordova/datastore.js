@@ -1,5 +1,4 @@
-
-define(function(){
+define(function () {
     var store = {
         /**
          * Database connection
@@ -15,9 +14,9 @@ define(function(){
          */
         moves: [],
 
-        initialize: function(){
+        initialize: function () {
             this.connection = window.openDatabase("chess", "1.0", "MKGIChess Storage", 1000000);
-            this.moves = window.JSON.parse(window.localStorage.getItem("moves"));
+            //this.moves = window.JSON.parse(window.localStorage.getItem("moves"));
             this.createDataStore(null);
         },
 
@@ -28,12 +27,48 @@ define(function(){
          */
         createDataStore: function (fn) {
             //check if we have the tables and create it
-            var games = "CREATE TABLE IF NOT EXISTS games (game_id unique, opponent string, " +
-                "your_turn integer, move_count integer, last_move integer)";
+            var settings = "CREATE TABLE IF NOT EXISTS settings (username string, " +
+                    "password string, gender char, age integer, server string)",
+                games = "CREATE TABLE IF NOT EXISTS games (game_id unique, opponent string, " +
+                    "your_turn integer, move_count integer, last_move integer)";
+
 
             store.connection.transaction(function (tx) {
                 tx.executeSql(games, [], null, fn);
+                tx.executeSql(settings, [], null, fn);
             });
+        },
+        /**
+         * Save user settings
+         *
+         * @param settings  Settings data object
+         * @param fn    Function callback
+         */
+        saveSettings: function (settings, fn) {
+            var q = "INSERT OR REPLACE INTO settings (username, password, gender, age, server) " +
+                "VALUES (?, ?, ?, ?, ?)";
+
+            store.connection.transaction(function (tx) {
+                tx.executeSql(q,
+                    [settings.username, settings.password, settings.gender, settings.age, settings.server],
+                    function () {
+                        if (typeof fn !== 'undefined') fn();
+                    }, fn);
+            });
+        },
+        /**
+         * Get user settings
+         */
+        loadSettings: function (fn) {
+            var q = "SELECT * FROM settings";
+
+            store.connection.transaction(function (tx) {
+                tx.executeSql(q, [], function (tx2, settings) {
+                    // return null error and settings, only one row
+                    if (typeof fn !== 'undefined') fn(null, settings.rows);
+                }, fn);
+            });
+
         },
         /**
          * Add a game to the database.
@@ -51,7 +86,7 @@ define(function(){
                     [game.game_id, game.opponent, game.your_turn, game.move_count, game.last_move],
                     function () {
                         //console.info("Inserted game: " + JSON.stringify(game) );
-                        if(typeof fn !== 'undefined') fn();
+                        if (typeof fn !== 'undefined') fn();
                     }, fn);
             });
         },
@@ -67,7 +102,7 @@ define(function(){
             store.connection.transaction(function (tx) {
                 tx.executeSql(q, [id], function () {
                     //console.info("Deleted game: " + id);
-                    if(typeof fn !== 'undefined') fn();
+                    if (typeof fn !== 'undefined') fn();
                 }, fn);
             });
         },
@@ -79,10 +114,6 @@ define(function(){
 
             store.connection.transaction(function (tx) {
                 tx.executeSql(q, [], function (tx2, games) {
-                    //console.info("Retrieved the games.");
-                    //console.info(games);
-                    //console.info("Returned rows = " + games.rows.length);
-
                     // return null error and game list
                     if (typeof fn !== 'undefined') fn(null, games.rows);
                 }, fn);
