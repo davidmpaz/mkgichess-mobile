@@ -4,8 +4,9 @@ define([
     'baseview',
     'app',
     'events',
+    'mustache',
     'text!templates/settings/page.html'
-], function ($, _, BaseView, CordovaApp, Events, settingsPageTemplate) {
+], function ($, _, BaseView, CordovaApp, Events, Mustache, settingsPageTemplate) {
     var DashboardPage = BaseView.extend({
         el: '.page',
         events: {
@@ -14,7 +15,7 @@ define([
         render: function () {
 
             var settings = CordovaApp.loadSettings(),
-                tpl = _.template(settingsPageTemplate, settings, { variable: 'setting' });
+                tpl = Mustache.render(settingsPageTemplate, settings);
 
             $(this.el).html(tpl);
         },
@@ -30,5 +31,6 @@ define([
         }
 
     });
+
     return DashboardPage;
 });

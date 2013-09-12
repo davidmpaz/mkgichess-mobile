@@ -10,6 +10,7 @@ require.config({
         underscore: 'libs/underscore/underscore-min', // https://github.com/amdjs
         lodash: 'libs/lodash/lodash', // alternative to underscore
         backbone: 'libs/backbone/backbone-min', // https://github.com/amdjs
+        mustache: 'libs/mustache/mustache', // template engine
 
         // Require.js plugins
         text: 'libs/require/text',

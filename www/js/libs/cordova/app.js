@@ -1,4 +1,3 @@
-
 define([
     'jquery',
     'libs/cordova/datastore'
@@ -30,13 +29,16 @@ define([
             CordovaApp.loadSettings();
         },
         onMenuPressed: function () {
-            $( "#more-menu-btn" ).click();
+            $("#more-menu-btn").click();
         },
-        saveSettings: function(settings){
+        saveSettings: function (settings) {
             window.localStorage.setItem('settings', window.JSON.stringify(settings));
         },
-        loadSettings: function(){
-            CordovaApp.user_settings = window.JSON.parse(window.localStorage.getItem("settings"));
+        loadSettings: function () {
+
+            if (CordovaApp.user_settings === null || typeof CordovaApp.user_settings === 'undefined') {
+                CordovaApp.user_settings = window.JSON.parse(window.localStorage.getItem("settings"));
+            }
 
             return CordovaApp.user_settings;
         }

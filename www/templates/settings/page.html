@@ -8,11 +8,11 @@
 
     <label for="username" class="ui-hidden-accessible">User Name:</label>
     <input type="text" name="username" id="username" placeholder="User name"
-           value="<%= setting.username %>" data-mini="true">
+           value="{{ username }}" data-mini="true">
 
     <label for="userpassword" class="ui-hidden-accessible">User Password:</label>
     <input type="password" name="password" id="userpassword"
-           placeholder="User password" value="<%= setting.password %>"
+           placeholder="User password" value="{{ password }}"
            data-mini="true">
 
     <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
@@ -26,13 +26,13 @@
 
     <label for="age" class="ui-hidden-accessible">Age:</label>
     <input type="number" name="age" pattern="[0-9]*" id="age" placeholder="Age"
-           value="<%= setting.age %>" min="10" max="60">
+           value="{{ age }}" min="10" max="60">
 
     <label for="server" class="ui-hidden-accessible">Server Url:</label>
 
     <div data-role="fieldcontain" data-type="horizontal">
         <input type="url" name="server" id="server" placeholder="Server Base Url"
-               value="<%= setting.server %>">
+               value="{{ server }}">
         <a href="#" data-role="button" data-inline="true" data-mini="true"
            data-theme="a" data-icon="question-sign"
            data-shadow="false" data-iconshadow="false">Test</a>
