@@ -8,23 +8,15 @@ define([
 ], function ($, _, BaseView, CordovaApp, Events, settingsPageTemplate) {
     var DashboardPage = BaseView.extend({
         el: '.page',
+        events: {
+            'click a': function () { this.saveUserData(); }
+        },
         render: function () {
 
             var settings = CordovaApp.loadSettings(),
-                tpl = _.template(settingsPageTemplate, settings, {variable: 'setting'});
+                tpl = _.template(settingsPageTemplate, settings, { variable: 'setting' });
 
             $(this.el).html(tpl);
-        },
-        events: {
-            // navigate to game list
-            'swipeleft': function () {
-                // save settings on navigating out of page
-                this.saveUserData();
-
-                $.mobile.navigate('games');
-            },
-            // save settings on navigating out of page
-            'click a': function () { this.saveUserData(); }
         },
         saveUserData: function(){
 
