@@ -6,8 +6,9 @@ define([
     var BaseView = Backbone.View.extend({
         enhance: function () {
             this.render();
-            // trigger the viewRendered event to re-enhance the new content added
-            Events.trigger('viewRendered');
+            // enhance recently added content, since we have single page layout
+            // we enhance the content section only
+            $("[data-role=content]").trigger('create');
         },
         fadeIn: function () {
             this.enhance();
