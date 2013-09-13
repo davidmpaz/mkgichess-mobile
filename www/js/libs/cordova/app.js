@@ -29,7 +29,7 @@ define([
             CordovaApp.loadSettings();
         },
         onMenuPressed: function () {
-            $("#more-menu-btn").click();
+            $("#more-menu").click();
         },
         saveSettings: function (settings) {
             window.localStorage.setItem('settings', window.JSON.stringify(settings));

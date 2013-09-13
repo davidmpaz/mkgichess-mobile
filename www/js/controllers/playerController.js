@@ -20,14 +20,14 @@ define([
                 Backbone.history.navigate('settings', {trigger: true});
             } else {
                 // get player and view
-                var player = new PlayerModel( Rest.getPlayer(settings.username) ),
+                var player = new PlayerModel(Rest.getPlayer(settings.username)),
                     dashboardPage = Vm.create(options.appView, 'DashboardPage', DashboardPage,
                         {model: player});
 
                 // render and make jquery enhance the html
                 dashboardPage.enhance();
                 // first page rendered
-                $.mobile.jqmNavigator.pushView(options.appView, {transition:'none'});
+                $.mobile.jqmNavigator.pushView(options.appView, {transition: 'none'});
 
             }
         }
