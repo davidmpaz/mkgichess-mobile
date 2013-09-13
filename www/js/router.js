@@ -23,11 +23,10 @@ define([
         var router = new AppRouter(options);
 
         router.on('route:defaultAction', function(){
-            require(['views/dashboard/page'], function (DashboardPage) {
-                var dashboardPage = Vm.create(appView, 'DashboardPage', DashboardPage, {initialPage: true});
-                dashboardPage.enhance();
-                // first page rendered
-                $.mobile.jqmNavigator.pushView(appView, {transition:'none'});
+            require(['controllers/playerController'], function (PlayerController) {
+                PlayerController.handleDashboardRoute({
+                    appView: appView, initialPage: true
+                });
             });
         });
         router.on('route:home', function () {

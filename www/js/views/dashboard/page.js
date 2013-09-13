@@ -1,25 +1,18 @@
 define([
     'jquery',
-    'lodash',
     'baseview',
-    'backbone',
-    'app',
-    'events',
+    'mustache',
     'text!templates/dashboard/page.html'
-], function ($, _, BaseView, Backbone, CordovaApp, Events, dashboardPageTemplate) {
+], function ($, BaseView, Mustache, dashboardPageTemplate) {
     var DashboardPage = BaseView.extend({
         el: '.page',
+        initialize: function () {
+            this.model.on('change', this.enhance, this)
+        },
         render: function () {
-
-            var settings = CordovaApp.user_settings;
-            // if not initial page we already saved the data
-            if(settings === null && this.options.initialPage) {
-                // got to settings form
-                Backbone.history.navigate('settings', {trigger: true});
-            } else {
-                $(this.el).html(dashboardPageTemplate);
-            }
+            this.$el.html(Mustache.render(dashboardPageTemplate, this.model.toJSON()));
         }
     });
+
     return DashboardPage;
 });
