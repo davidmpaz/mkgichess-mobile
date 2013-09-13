@@ -1,0 +1,18 @@
+<ul id="game-list" data-role="listview" data-count-theme="c" data-inset="true">
+
+    {{ #games }}
+    <li><a href="#/edit.html?id={{ game_id }}">
+        <img src="{{ #your_turn }}img/lamp_green.png{{ /your_turn }}
+              {{ ^your_turn }}img/lamp_red.png{{ /your_turn }}"
+             alt="{{ #altText }}Your turn.{{ /altText }}
+              {{ ^altText }}Opponent turn.{{ /altText }}"
+             class="ui-li-icon ui-corner-none">{{ opponent }}
+        <span class="ui-li-count">{{ move_count }}</span></a>
+    </li>
+    {{ /games }}
+
+    {{ ^games }}
+    <li><a href="#/">You currently do not have any games.</a></li>
+    {{ /games }}
+
+</ul>
