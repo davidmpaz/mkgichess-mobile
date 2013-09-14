@@ -2,14 +2,13 @@ define([
     'vm',
     'app',
     'jquery',
-    'lodash',
-    'backbone',
     'models/player',
-    'views/dashboard/page',
     'libs/cordova/restclient',
-], function (Vm, CordovaApp, $, _, Backbone, PlayerModel, DashboardPage, Rest) {
+    'views/dashboard/page',
+    'views/player/profile',
+], function (Vm, CordovaApp, $, PlayerModel, Rest, DashboardPage, ProfilePage) {
 
-    var playerController = {
+    return {
 
         handleDashboardRoute: function (options) {
             var settings = CordovaApp.user_settings;
@@ -30,8 +29,16 @@ define([
                 $.mobile.jqmNavigator.pushView(options.appView, {transition: 'none'});
 
             }
-        }
-    }
+        },
+        handleProfileRoute: function (options) {
+            // get player and view
+            var settings = CordovaApp.user_settings,
+                player = new PlayerModel(Rest.getPlayer(settings.username)),
+                profilePage = Vm.create(options.appView, 'ProfilePage', ProfilePage,
+                    {model: player});
 
-    return playerController;
+            // render and make jquery enhance the html
+            profilePage.enhance();
+        }
+    };
 });

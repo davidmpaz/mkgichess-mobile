@@ -12,6 +12,7 @@ define([
             'settings': 'settings',
             'help': 'help',
             'home': 'home',
+            'profile': 'profile',
 
             // Default - catch all
             '*actions': 'defaultAction'
@@ -27,6 +28,11 @@ define([
                 PlayerController.handleDashboardRoute({
                     appView: appView, initialPage: true
                 });
+            });
+        });
+        router.on('route:profile', function(){
+            require(['controllers/playerController'], function (PlayerController) {
+                PlayerController.handleProfileRoute({appView: appView});
             });
         });
         router.on('route:home', function () {

@@ -1,0 +1,39 @@
+<div class="ui-grid-solo ui-responsive">
+    <div class="ui-block-a">
+        <img src="{{server_url}}/player_portrait.php?player={{username}}"
+             alt="{{username}} portrait">
+    </div>
+</div>
+<div id="stat-container"></div>
+<form id="profile-form" enctype="multipart/form-data">
+
+    <label for="username" class="ui-hidden-accessible">User Name:</label>
+    <input type="text" name="username" id="username" placeholder="User name"
+           value="{{ username }}" data-mini="true">
+
+    <label for="userpassword" class="ui-hidden-accessible">User Password:</label>
+    <input type="password" name="password" id="userpassword"
+           placeholder="User password" value="{{ password }}"
+           data-mini="true">
+
+    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+        <legend class="ui-hidden-accessible">Gender:</legend>
+        <input type="radio" name="gender" id="radio-choice-v-6a" value="m"
+               checked="checked">
+        <label for="radio-choice-v-6a">Male</label>
+        <input type="radio" name="gender" id="radio-choice-v-6b" value="f">
+        <label for="radio-choice-v-6b">Female</label>
+    </fieldset>
+
+    <label for="age" class="ui-hidden-accessible">Age:</label>
+    <input type="number" name="age" pattern="[0-9]*" id="age" placeholder="Age"
+           value="{{ age }}" min="10" max="60">
+
+    <label for="select-country">Country:</label>
+    <select name="country" id="select-country" data-mini="true"></select>
+
+    <a id="save-profile" href="#" data-role="button" data-inline="true" data-mini="true"
+       data-theme="a" data-icon="save"
+       data-shadow="false" data-iconshadow="false">Save</a>
+
+</form>
