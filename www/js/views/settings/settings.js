@@ -26,8 +26,9 @@ define([
                 return settings;
             }, {});
 
-            // save settings
-            CordovaApp.saveSettings(data);
+            // save new settings merged with old ones
+            var settings = CordovaApp.loadSettings();
+            CordovaApp.saveSettings(_.extend(settings, data));
         }
 
     });
