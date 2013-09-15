@@ -5,7 +5,7 @@ define([
     'models/player',
     'libs/cordova/restclient',
     'views/dashboard/page',
-    'views/player/profile',
+    'views/player/profile'
 ], function (Vm, CordovaApp, $, PlayerModel, Rest, DashboardPage, ProfilePage) {
 
     return {
@@ -24,9 +24,14 @@ define([
                         {model: player});
 
                 // render and make jquery enhance the html
-                dashboardPage.enhance();
-                // first page rendered
-                $.mobile.jqmNavigator.pushView(options.appView, {transition: 'none'});
+                dashboardPage.fadeIn();
+                // first page rendered, ensure navigation, good when browsing from popups
+                // to get them closed. transition option is useless here unless you allow
+                // same page transition.
+                $.mobile.jqmNavigator.pushView(options.appView, {
+                    transition: 'pop',
+                    allowSamePageTransition: true
+                });
 
             }
         },
@@ -39,6 +44,11 @@ define([
 
             // render and make jquery enhance the html
             profilePage.enhance();
+            // ensure navigation, good when browsing from popups to get them closed
+            $.mobile.jqmNavigator.pushView(options.appView, {
+                transition: 'pop',
+                allowSamePageTransition: true
+            });
         }
     };
 });

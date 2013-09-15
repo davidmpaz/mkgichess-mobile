@@ -18,4 +18,7 @@ define([
     // disabled also on router, although lets being redundant
     $.mobile.pushStateEnabled = false;
 
+    // don't render view on navigator
+    $.mobile.jqmNavigator.enableRenderViews = false;
+
 });
