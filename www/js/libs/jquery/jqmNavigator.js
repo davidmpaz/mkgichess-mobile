@@ -57,6 +57,16 @@
                 defaultPageContainer:null,
 
                 /**
+                 * Whether to invoke view's render() method.
+                 *
+                 * When using composites views, the entire page is rendered part by part,
+                 * first layout then the page content. In cases like that, rendering on
+                 * navigator causes the page rendering with errors, specially because after
+                 * a view change all widget need to be re-enhanced etc..
+                 */
+                enableRenderViews: true,
+
+                /**
                  * Pushes view to the stack.
                  *
                  * @param view {Backbone.View}
@@ -70,7 +80,7 @@
                     // Appending the view to the DOM
                     containerViews.pageContainer.append(view.el);
                     // Rendering the view
-                    //view.render();
+                    if(this.enableRenderViews) view.render();
 
                     if (!$.mobile.firstPage) {
                         // Adding data-role with page value
@@ -172,7 +182,7 @@
                         // Appending the view to the DOM
                         containerViews.pageContainer.append(view.el);
                         // Rendering the view
-                        view.render();
+                        if(this.enableRenderViews) view.render();
 
                         // Changing page
                         $.mobile.changePage(view.$el, $.extend({
@@ -207,7 +217,7 @@
                         // Appending the view to the DOM
                         containerViews.pageContainer.append(view.el);
                         // Rendering the view
-                        view.render();
+                        if(this.enableRenderViews) view.render();
 
                         // Changing page
                         $.mobile.changePage(view.$el, $.extend({
