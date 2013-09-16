@@ -19,13 +19,6 @@ platforms/android/local.properties
 platforms/android/libs
 platforms/android/cordova
 
-# The following entries should probably be removed to start 
-# development, added here to not include surplus files in 
-# regards to this boilerplate code.
-platforms
-plugins
-
-
 # iOS
 platforms/ios/build/
 platforms/ios/CordovaLib/build/
