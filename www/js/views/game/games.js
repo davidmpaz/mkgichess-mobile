@@ -2,7 +2,7 @@ define([
     'jquery',
     'baseview',
     'mustache',
-    'libs/cordova/data',
+    'libs/data/data',
     'text!templates/game/gameList.html'
 ], function ($, BaseView, Mustache, mockdata, gameListTemplate) {
     var GameListPage = BaseView.extend({
