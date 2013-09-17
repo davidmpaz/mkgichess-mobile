@@ -8,14 +8,27 @@ define([
         return _.extend(this, object);
     };
 
-    function processView (View) {
+    /**
+     * Push the view with passed options
+     *
+     * @param View
+     * @param options
+     */
+    function processView (View, options) {
         // ensure navigation, good when browsing from popups
         // to get them closed. transition option is useless here unless you allow
         // same page transition.
-        $.mobile.jqmNavigator.pushView(View, {
-            transition: 'pop',
-            allowSamePageTransition: true
-        });
+        if(typeof options === 'undefined'){
+            options = {
+                transition: 'pop',
+                allowSamePageTransition: true
+            };
+        } else {
+            // this is a must and it is overwritten even if developer pass it as option
+            options.allowSamePageTransition = true;
+        }
+
+        $.mobile.jqmNavigator.pushView(View, options);
     };
 
     return {
