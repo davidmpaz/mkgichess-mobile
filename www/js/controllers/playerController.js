@@ -48,8 +48,10 @@ define([
             var settings = CordovaApp.loadSettings(),
                 player = new PlayerModel(
                     (settings === null) ? {} : Rest.getPlayer(settings.username)
-                ),
-                settingsPage = Vm.create(options.appView, 'SettingsPage', SettingsPage,
+                );
+            player.set('server', settings.server);
+
+            var settingsPage = Vm.create(options.appView, 'SettingsPage', SettingsPage,
                     {model: player});
 
             // render and make jquery enhance the html

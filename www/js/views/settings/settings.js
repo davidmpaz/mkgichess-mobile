@@ -17,6 +17,8 @@ define([
 
             this.model.set('gender', this.model.get('gender') == 'f');
 
+            console.info(this.model.toJSON());
+
             var tpl = Mustache.render(settingsPageTemplate, this.model.toJSON());
 
             $(this.el).html(tpl);
