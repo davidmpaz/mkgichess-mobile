@@ -36,9 +36,8 @@ define([
             });
         });
         router.on('route:home', function () {
-            require(['views/dashboard/page'], function (DashboardPage) {
-                var dashboardPage = Vm.create(appView, 'DashboardPage', DashboardPage, {initialPage: false});
-                dashboardPage.fadeIn();
+            require(['controllers/playerController'], function (PlayerController) {
+                PlayerController.handleDashboardRoute({ appView: appView });
             });
         });
         router.on('route:games', function () {
