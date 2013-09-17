@@ -12,14 +12,15 @@ define([
     var ProfilePage = BaseView.extend({
         el: '.page',
         events: {
-            'click a#save-profile' : 'saveUserData'
+            'click #save-profile' : 'saveUserData'
         },
         initialize: function () {
             // assume the model instance is already attached when creating this view
             this.model.on('change', this.enhance, this);
         },
         render: function () {
-            this.model.set('server_url', CordovaApp.user_settings.server);
+            var settings = CordovaApp.loadSettings();
+            this.model.set('server', settings.server);
 
             this.$el.html(Mustache.render(profilePageTemplate, this.model.toJSON()));
 

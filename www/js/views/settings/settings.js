@@ -1,34 +1,40 @@
 define([
     'jquery',
     'lodash',
+    'backbone',
     'baseview',
     'app',
-    'events',
     'mustache',
     'text!templates/settings/page.html'
-], function ($, _, BaseView, CordovaApp, Events, Mustache, settingsPageTemplate) {
+], function ($, _, Backbone, BaseView, CordovaApp, Mustache, settingsPageTemplate) {
     var DashboardPage = BaseView.extend({
         el: '.page',
         events: {
-            'click a': function () { this.saveUserData(); }
+            'click a': 'saveUserData',
+            'click #settings-form-submit': 'saveUserData'
         },
         render: function () {
 
-            var settings = CordovaApp.loadSettings(),
-                tpl = Mustache.render(settingsPageTemplate, settings);
+            this.model.set('gender', this.model.get('gender') == 'f');
+
+            var tpl = Mustache.render(settingsPageTemplate, this.model.toJSON());
 
             $(this.el).html(tpl);
         },
-        saveUserData: function(){
+        saveUserData: function(ev){
+            ev.preventDefault();
 
-            var data = _.reduce($('#settings-form').serializeArray(), function(settings, field){
+            var data = _.reduce(this.$('#settings-form').serializeArray(), function(settings, field){
                 settings[field.name] = field.value;
                 return settings;
             }, {});
 
             // save new settings merged with old ones
-            var settings = CordovaApp.loadSettings();
-            CordovaApp.saveSettings(_.extend(settings, data));
+            var oldsettings = (CordovaApp.loadSettings() === null ? {} : CordovaApp.loadSettings()),
+                newsettings = _.extend(oldsettings, data);
+            CordovaApp.saveSettings(newsettings);
+
+            Backbone.history.navigate('#/home', {trigger: true});
         }
 
     });

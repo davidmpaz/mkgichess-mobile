@@ -21,26 +21,30 @@ define([
         // deviceready Event Handler
         //
         // The scope of 'this' is the event. In order to call the 'receivedEvent'
-        // function, we must explicity call 'CordovaApp.receivedEvent(...);'
+        // function, we must explicitly call 'CordovaApp.receivedEvent(...);'
         onDeviceReady: function () {
             // do cordova stuff here
             document.addEventListener("menubutton", CordovaApp.onMenuPressed, false);
-            CordovaApp.store.initialize();
             CordovaApp.loadSettings();
         },
         onMenuPressed: function () {
             $("#more-menu").click();
         },
         saveSettings: function (settings) {
-            window.localStorage.setItem('settings', window.JSON.stringify(settings));
+            // check settings values before use JSON
+            if(settings !== null && typeof settings !== 'undefined') {
+                window.localStorage.setItem('settings', window.JSON.stringify(settings));
+            }
         },
         loadSettings: function () {
 
-            if (CordovaApp.user_settings === null || typeof CordovaApp.user_settings === 'undefined') {
-                CordovaApp.user_settings = window.JSON.parse(window.localStorage.getItem("settings"));
+            var settings = window.localStorage.getItem("settings");
+
+            if(settings !== null){
+                settings = window.JSON.parse(settings);
             }
 
-            return CordovaApp.user_settings;
+            return settings;
         }
     };
 

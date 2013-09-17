@@ -48,9 +48,8 @@ define([
             });
         });
         router.on('route:settings', function () {
-            require(['views/settings/settings'], function (SettingsPage) {
-                var settingsPage = Vm.create(appView, 'SettingsPage', SettingsPage);
-                settingsPage.fadeIn();
+            require(['controllers/playerController'], function (PlayerController) {
+                PlayerController.handleSettingsRoute({appView: appView});
             });
         });
         router.on('route:help', function () {

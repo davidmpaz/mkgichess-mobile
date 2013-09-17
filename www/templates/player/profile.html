@@ -5,7 +5,7 @@
     </div>
 </div>
 <div id="stat-container"></div>
-<form id="profile-form" enctype="multipart/form-data">
+<form id="profile-form" enctype="multipart/form-data" onsubmit="return false;">
 
     <label for="username" class="ui-hidden-accessible">User Name:</label>
     <input type="text" name="username" id="username" placeholder="User name"
@@ -19,9 +19,10 @@
     <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
         <legend class="ui-hidden-accessible">Gender:</legend>
         <input type="radio" name="gender" id="radio-choice-v-6a" value="m"
-               checked="checked">
+        {{^gender}}checked="checked"{{/gender}}>
         <label for="radio-choice-v-6a">Male</label>
-        <input type="radio" name="gender" id="radio-choice-v-6b" value="f">
+        <input type="radio" name="gender" id="radio-choice-v-6b" value="f"
+        {{#gender}}checked="checked"{{/gender}}>
         <label for="radio-choice-v-6b">Female</label>
     </fieldset>
 
@@ -32,8 +33,9 @@
     <label for="select-country">Country:</label>
     <select name="country" id="select-country" data-mini="true"></select>
 
-    <a id="save-profile" href="#" data-role="button" data-inline="true" data-mini="true"
-       data-theme="a" data-icon="save"
-       data-shadow="false" data-iconshadow="false">Save</a>
+    <button id="save-profile" type="submit" data-role="button" data-inline="true"
+            data-mini="true" data-theme="a" data-icon="save"
+            data-shadow="false" data-iconshadow="false">Save
+    </button>
 
 </form>
