@@ -21,38 +21,56 @@ define([
                 // got to settings form
                 Backbone.history.navigate('#/settings', {trigger: true});
             } else {
-                // get player and view
-                var player = new PlayerModel(Rest.getPlayer(settings.username)),
-                    dashboardPage = Vm.create(options.appView, 'DashboardPage', DashboardPage,
-                        {model: player});
+                // get player and view asynchronously
+                Rest.getPlayer(settings, function (playerData) {
+                    var player = new PlayerModel();
+                    player.set(_.extend(settings, playerData));
 
-                // render and make jquery enhance the html
-                dashboardPage.enhance();
-                this.processView(options.appView);
+                    var dashboardPage = Vm.create(options.appView, 'DashboardPage',
+                            DashboardPage,
+                            {model: player});
+
+                    // update settings/profile
+                    CordovaApp.saveSettings(player.toJSON());
+
+                    // render and make jquery enhance the html
+                    dashboardPage.enhance();
+                    PlayerController.processView(options.appView);
+                });
+
             }
         },
         handleProfileRoute: function (options) {
             // get player and view
-            var settings = CordovaApp.loadSettings(),
-                player = new PlayerModel(Rest.getPlayer(settings.username)),
-                profilePage = Vm.create(options.appView, 'ProfilePage', ProfilePage,
-                    {model: player});
+            var settings = CordovaApp.loadSettings();
 
-            // render and make jquery enhance the html
-            profilePage.enhance();
-            this.processView(options.appView);
+            Rest.getPlayer(settings, function (playerData) {
+                var player = new PlayerModel();
+                player.set(_.extend(settings, playerData));
+
+                var profilePage = Vm.create(options.appView, 'ProfilePage', ProfilePage,
+                        {model: player});
+
+                // update settings/profile
+                CordovaApp.saveSettings(player.toJSON());
+
+                // render and make jquery enhance the html
+                profilePage.enhance();
+                PlayerController.processView(options.appView);
+            });
         },
         handleSettingsRoute: function (options) {
 
             // get player and view
             var settings = CordovaApp.loadSettings(),
-                player = new PlayerModel(
-                    (settings === null) ? {} : Rest.getPlayer(settings.username)
-                );
-            player.set('server', settings.server);
+                player = new PlayerModel();
+
+            if (settings !== null) {
+                player.set(settings);
+            }
 
             var settingsPage = Vm.create(options.appView, 'SettingsPage', SettingsPage,
-                    {model: player});
+                {model: player});
 
             // render and make jquery enhance the html
             settingsPage.enhance();

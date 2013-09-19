@@ -2,16 +2,16 @@
 
 <div class="ui-grid-solo ui-responsive">
     <div class="ui-block-a">
-        <img src="{{server_url}}/player_portrait.php?player={{username}}"
-             alt="{{username}} portrait">
+        <img src="{{ server }}/user/{{ identifier }}/portrait"
+             alt="{{identifier}} portrait" id="profile-pict" >
     </div>
 </div>
 <div id="stat-container"></div>
 <form id="profile-form" enctype="multipart/form-data" onsubmit="return false;">
 
     <label for="username" class="ui-hidden-accessible">User Name:</label>
-    <input type="text" name="username" id="username" placeholder="User name"
-           value="{{ username }}" data-mini="true">
+    <input type="text" name="identifier" id="username" placeholder="User name"
+           value="{{ identifier }}" data-mini="true">
 
     <label for="userpassword" class="ui-hidden-accessible">User Password:</label>
     <input type="password" name="password" id="userpassword"

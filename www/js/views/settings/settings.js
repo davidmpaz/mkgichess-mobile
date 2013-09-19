@@ -17,8 +17,6 @@ define([
 
             this.model.set('gender', this.model.get('gender') == 'f');
 
-            console.info(this.model.toJSON());
-
             var tpl = Mustache.render(settingsPageTemplate, this.model.toJSON());
 
             $(this.el).html(tpl);
@@ -32,7 +30,8 @@ define([
             }, {});
 
             // save new settings merged with old ones
-            var oldsettings = (CordovaApp.loadSettings() === null ? {} : CordovaApp.loadSettings()),
+            var settings = CordovaApp.loadSettings(),
+                oldsettings = (settings === null ? {} : settings),
                 newsettings = _.extend(oldsettings, data);
             CordovaApp.saveSettings(newsettings);
 

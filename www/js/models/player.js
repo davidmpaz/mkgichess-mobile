@@ -5,15 +5,23 @@ define([
 ], function (_, Backbone, Countries) {
     var playerModel = Backbone.Model.extend({
         defaults: {
-            username: '', password: '', realname: '', gender: '', age: '', country: '',
-            email: '', creation_date: '', score_win: '', score_draw: '', score_losses: '',
-            score_points: '', notification_delay: '', is_admin: '', portrait: '',
-            genderLong: function () { return this.gender == 'm' ? 'Male' : 'Female'; },
-            countryLong: function () { return Countries.getCountryName(this.country)},
-            score_games: function () {return this.score_win + this.score_draw + this.score_losses}
+            identifier: '', password: '', real_name: '', gender: 'm', age: 0, country: 'cu',
+            email_address: '', creation_date: '', score_wins: 0, score_draws: 0, score_losses: 0,
+            score_points: 0, notification_delay: '', is_admin: 0,
+            portrait: "",
+            genderLong: function () {
+                return this.gender == 'm' ? 'Male' : 'Female';
+            },
+            countryLong: function () {
+                return Countries.getCountryName(this.country.toUpperCase())
+            },
+            score_games: function () {
+                return parseInt(this.score_wins) + parseInt(this.score_draws) + parseInt(this.score_losses);
+            }
         },
         initialize: function () {
         }
+
 
     });
 
