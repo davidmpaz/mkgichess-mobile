@@ -254,6 +254,11 @@ define([
     ]
     var countries = {
         getCountryCode: function (name) {
+            if(name == '')
+            {
+                return null;
+            }
+
             var c = _.find(ISO3166countries, function (country) {
                 return country.name === name;
             });
@@ -261,10 +266,14 @@ define([
             return c["alpha-2"];
         },
         getCountryName: function (code) {
+            if(code == '')
+            {
+                return null;
+            }
+
             var c = _.find(ISO3166countries, function (country) {
                 return country["alpha-2"] === code;
             });
-
             return c.name;
         },
         getCountries: function () {
