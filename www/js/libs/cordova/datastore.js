@@ -27,7 +27,7 @@ define(function () {
          */
         createDataStore: function (fn) {
             //check if we have the tables and create it
-            var settings = "CREATE TABLE IF NOT EXISTS settings (username string, " +
+            var settings = "CREATE TABLE IF NOT EXISTS settings (identifier string, " +
                     "password string, gender char, age integer, server string)",
                 games = "CREATE TABLE IF NOT EXISTS games (game_id unique, opponent string, " +
                     "your_turn integer, move_count integer, last_move integer)";
@@ -45,12 +45,12 @@ define(function () {
          * @param fn    Function callback
          */
         saveSettings: function (settings, fn) {
-            var q = "INSERT OR REPLACE INTO settings (username, password, gender, age, server) " +
+            var q = "INSERT OR REPLACE INTO settings (identifier, password, gender, age, server) " +
                 "VALUES (?, ?, ?, ?, ?)";
 
             store.connection.transaction(function (tx) {
                 tx.executeSql(q,
-                    [settings.username, settings.password, settings.gender, settings.age, settings.server],
+                    [settings.identifier, settings.password, settings.gender, settings.age, settings.server],
                     function () {
                         if (typeof fn !== 'undefined') fn();
                     }, fn);
