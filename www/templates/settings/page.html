@@ -15,26 +15,13 @@
            placeholder="User password" value="{{ password }}"
            data-mini="true">
 
-    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
-        <legend class="ui-hidden-accessible">Gender:</legend>
-        <input type="radio" name="gender" id="radio-choice-v-6a" value="m"
-        {{^gender}}checked="checked"{{/gender}}>
-        <label for="radio-choice-v-6a">Male</label>
-        <input type="radio" name="gender" id="radio-choice-v-6b" value="f"
-        {{#gender}}checked="checked"{{/gender}}>
-        <label for="radio-choice-v-6b">Female</label>
-    </fieldset>
-
-    <label for="age" class="ui-hidden-accessible">Age:</label>
-    <input type="number" name="age" pattern="[0-9]*" id="age" placeholder="Age"
-           value="{{ age }}" min="10" max="60">
-
     <label for="server" class="ui-hidden-accessible">Server Url:</label>
 
     <div data-role="fieldcontain" data-type="horizontal">
         <input type="url" name="server" id="server" placeholder="Server Base Url"
                value="{{ server }}">
-        <a href="#" data-role="button" data-inline="true" data-mini="true"
+        <a href="#" id="test-server" data-role="button" data-inline="true"
+           data-mini="true"
            data-theme="a" data-icon="question-sign"
            data-shadow="false" data-iconshadow="false">Test</a>
     </div>

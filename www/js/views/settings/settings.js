@@ -5,11 +5,13 @@ define([
     'baseview',
     'app',
     'mustache',
+    'libs/cordova/restclient',
     'text!templates/settings/page.html'
-], function ($, _, Backbone, BaseView, CordovaApp, Mustache, settingsPageTemplate) {
+], function ($, _, Backbone, BaseView, CordovaApp, Mustache, Rest, settingsPageTemplate) {
     var DashboardPage = BaseView.extend({
         el: '.page',
         events: {
+            'click a#test-server': 'testServer',
             'click a': 'saveUserData',
             'click #settings-form-submit': 'saveUserData'
         },
@@ -21,10 +23,23 @@ define([
 
             $(this.el).html(tpl);
         },
-        saveUserData: function(ev){
+        testServer: function (ev) {
             ev.preventDefault();
 
-            var data = _.reduce(this.$('#settings-form').serializeArray(), function(settings, field){
+            Rest.testServer({server: this.$('#server').val()}, function (result) {
+                if (result) {
+                    this.$('.ui-icon-question-sign').
+                        addClass('ui-icon-ok').removeClass('ui-icon-question-sign');
+                }
+            });
+
+            return false;
+        },
+        saveUserData: function (ev) {
+            ev.preventDefault();
+            if (ev.currentTarget.id == 'test-server') return false;
+
+            var data = _.reduce(this.$('#settings-form').serializeArray(), function (settings, field) {
                 settings[field.name] = field.value;
                 return settings;
             }, {});
