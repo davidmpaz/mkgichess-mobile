@@ -2,13 +2,17 @@ define([
     'vm',
     'app',
     'jquery',
+    'backbone',
     'baseview',
     'mustache',
+    'models/player',
     'libs/data/countries',
     'views/player/stats',
     'views/player/country',
     'text!templates/player/profile.html'
-], function (Vm, CordovaApp, $, BaseView, Mustache, Countries, StatView, CountryView, profilePageTemplate) {
+], function (Vm, CordovaApp, $, Backbone, BaseView, Mustache, PlayerModel, Countries,
+             StatView, CountryView, profilePageTemplate) {
+
     var ProfilePage = BaseView.extend({
         el: '.page',
         events: {
@@ -39,11 +43,15 @@ define([
                 return settings;
             }, {});
 
-            // store the profile merged with settings
-            var settings = _.extend(this.model.toJSON(), data);
+            this.model.set(data);
+            // save remotely
+            //this.model.save();
 
-            // save settings and profile
-            CordovaApp.saveSettings(settings);
+            if (this.model.isValid()) {
+                // save settings and profile
+                CordovaApp.saveSettings(this.model.toJSON());
+                Backbone.history.navigate('#/home');
+            }
         },
         takePicture: function () {
             //TODO invoke cordova capture to take a picture

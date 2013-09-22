@@ -14,6 +14,13 @@ define([
             this.enhance();
             // apply effect
             this.$el.hide().fadeIn();
+        },
+        showError: function (msg) {
+            if (typeof navigator.notification != 'undefined') {
+                navigator.notification.alert(msg, null, 'Oops !');
+            } else {
+                alert(msg);
+            }
         }
     });
 
