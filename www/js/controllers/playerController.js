@@ -13,19 +13,6 @@ define([
 
     var PlayerController = BaseController.extend({
 
-        checkSettings: function () {
-            var settings = CordovaApp.loadSettings();
-
-            // if not initial page we already saved the data
-            if (settings == null) {
-                // got to settings form
-                Backbone.history.navigate('#/settings');
-                return false;
-            }
-
-            return settings;
-        },
-
         handleDashboardRoute: function (options) {
             var settings = this.checkSettings();
             // stop here ! we are going to settings
