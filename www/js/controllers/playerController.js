@@ -36,9 +36,10 @@ define([
             if (!settings) return false;
 
 
-            Rest.getPlayer(settings, function (playerData) {
-                var playerData = _.extend(settings, playerData),
-                    player = new PlayerModel(playerData);
+            Rest.getPlayer(settings, function (player) {
+                var player = _.extend(settings, player);
+                // server url doesnt come from remote
+                player.set('server', settings.server);
 
                 var profilePage = Vm.create(options.appView, 'ProfilePage', ProfilePage,
                     {model: player});
