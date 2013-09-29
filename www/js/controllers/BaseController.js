@@ -45,9 +45,19 @@ define([
         return settings;
     };
 
+    function saveSettings(settings) {
+        CordovaApp.saveSettings(settings);
+    };
+
+    function loadSettings() {
+        return CordovaApp.loadSettings();
+    }
+
     return {
         extend: extend,
         processView: processView,
-        checkSettings: checkSettings
+        checkSettings: checkSettings,
+        saveSettings: saveSettings,
+        loadSettings: loadSettings
     };
 });

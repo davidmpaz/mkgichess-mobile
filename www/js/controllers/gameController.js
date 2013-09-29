@@ -1,29 +1,36 @@
 define([
     'vm',
-    'app',
     'jquery',
     'backbone',
-    'models/player',
-    'libs/cordova/restclient',
-    'controllers/BaseController',
-    'views/game/games'
-], function (Vm, CordovaApp, $, Backbone, PlayerModel, Rest, BaseController, GamesPage) {
+    'controllers/BaseController'
+], function (Vm, $, Backbone, BaseController) {
 
     var GameController = BaseController.extend({
 
         handleGamesRoute: function (options) {
-            var settings = this.checkSettings();
-            // stop here ! we are going to settings
-            if (!settings) return false;
+            var self = this;
 
-            Rest.getPlayerGames(settings, function (gameCollection) {
-                var gamePage = Vm.create(options.appView, 'GamePage', GamesPage,
-                    {collection: gameCollection});
+            require([
+                'models/player',
+                'views/game/games',
+                'libs/cordova/restclient',
 
-                // render and make jquery enhance the html
-                gamePage.enhance();
-                GameController.processView(options.appView);
+            ], function (PlayerModel, GamesPage, Rest) {
+
+                var settings = self.checkSettings();
+                // stop here ! we are going to settings
+                if (!settings) return false;
+
+                Rest.getPlayerGames(settings, function (gameCollection) {
+                    var gamePage = Vm.create(options.appView, 'GamePage', GamesPage,
+                        {collection: gameCollection});
+
+                    // render and make jquery enhance the html
+                    gamePage.enhance();
+                    GameController.processView(options.appView);
+                });
             });
+
         }
     });
 
