@@ -41,9 +41,8 @@ define([
             });
         });
         router.on('route:games', function () {
-            require(['views/game/games'], function (GamePage) {
-                var gamePage = Vm.create(appView, 'GamePage', GamePage);
-                gamePage.fadeIn();
+            require(['controllers/gameController'], function (GameController) {
+                GameController.handleGamesRoute({ appView: appView });
             });
         });
         router.on('route:settings', function () {

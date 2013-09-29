@@ -1,8 +1,10 @@
 define([
     'jquery',
     'lodash',
-    'models/player'
-], function ($, _, PlayerModel) {
+    'models/player',
+    'models/game',
+    'collections/games'
+], function ($, _, PlayerModel, GameModel, GameCollection) {
     var client = {
 
         initialize: function () {
@@ -40,6 +42,27 @@ define([
                 type: 'get',
                 success: function (resutlt) {
                     if (typeof fn == 'function') fn(resutlt);
+                },
+                error: function (/*xhr, textStatus, errorThrown*/) {
+                    if (typeof fn == 'function') fn(false);
+                }
+            });
+        },
+        /**
+         * Get a player by username from REST endpoint
+         * @param fn
+         * @param options
+         */
+        getPlayerGames: function (options, fn) {
+
+            $.ajax({
+                url: options.server + '/user/' + options.identifier + '/games',
+                type: 'get',
+                dataType: 'json',
+                success: function (games) {
+                    // fill with some sensible defaults
+                    var collection = new GameCollection(games);
+                    if (typeof fn == 'function') fn(collection);
                 },
                 error: function (/*xhr, textStatus, errorThrown*/) {
                     if (typeof fn == 'function') fn(false);

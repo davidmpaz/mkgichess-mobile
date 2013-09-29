@@ -2,14 +2,12 @@ define([
     'jquery',
     'baseview',
     'mustache',
-    'libs/data/data',
     'text!templates/game/gameList.html'
-], function ($, BaseView, Mustache, mockdata, gameListTemplate) {
+], function ($, BaseView, Mustache, gameListTemplate) {
     var GameListPage = BaseView.extend({
         el: '.page',
         render: function () {
-
-            var tpl = Mustache.render(gameListTemplate, mockdata);
+            var tpl = Mustache.render(gameListTemplate, {games: this.collection.toJSON()});
             this.$el.html(tpl);
         }
     });
