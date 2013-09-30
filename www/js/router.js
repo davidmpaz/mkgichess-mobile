@@ -12,6 +12,7 @@ define([
             'settings': 'settings',
             'help': 'help',
             'home': 'home',
+            'profile': 'profile',
             'profile/:id': 'profile',
             'ranking': 'ranking',
 
