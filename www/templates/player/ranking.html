@@ -1,0 +1,15 @@
+<ul id="ranking-list" data-role="listview" data-count-theme="c" data-inset="true">
+
+    {{ #players }}
+    <li><a href="#/profile/{{ identifier }}">
+        {{ #real_name }} {{ real_name }} {{ /real_name }}
+        {{ ^real_name }} {{ identifier }} {{ /real_name }}
+        <span class="ui-li-count">{{ score_points }}</span></a>
+    </li>
+    {{ /players }}
+
+    {{ ^players }}
+    <li><a href="#/">There is no player ranked yet..</a></li>
+    {{ /players }}
+
+</ul>

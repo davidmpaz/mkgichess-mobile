@@ -3,8 +3,9 @@ define([
     'lodash',
     'models/player',
     'models/game',
-    'collections/games'
-], function ($, _, PlayerModel, GameModel, GameCollection) {
+    'collections/games',
+    'collections/players'
+], function ($, _, PlayerModel, GameModel, GameCollection, PlayerCollection) {
     var client = {
 
         initialize: function () {
@@ -24,6 +25,27 @@ define([
                     // fill with some sensible defaults
                     var player = new PlayerModel(user);
                     if (typeof fn == 'function') fn(player);
+                },
+                error: function (/*xhr, textStatus, errorThrown*/) {
+                    if (typeof fn == 'function') fn(false);
+                }
+            });
+        },
+        /**
+         * Get a ranking list of username from REST endpoint
+         * @param fn
+         * @param options
+         */
+        getRankingPlayers: function (options, fn) {
+
+            $.ajax({
+                url: options.server + '/user/ranking',
+                type: 'get',
+                dataType: 'json',
+                success: function (users) {
+                    // fill with some sensible defaults
+                    var players = new PlayerCollection(users);
+                    if (typeof fn == 'function') fn(players);
                 },
                 error: function (/*xhr, textStatus, errorThrown*/) {
                     if (typeof fn == 'function') fn(false);

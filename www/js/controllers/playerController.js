@@ -82,6 +82,30 @@ define([
                 // push the view
                 self.processView(options.appView);
             });
+        },
+        handleRankingRoute: function (options) {
+            var self = this;
+
+            require([
+                'views/player/ranking',
+                'libs/cordova/restclient',
+
+            ], function (RankingPage, Rest) {
+
+                var settings = self.checkSettings();
+                // stop here ! we are going to settings
+                if (!settings) return false;
+
+                Rest.getRankingPlayers(settings, function (playerCollection) {
+                    var rankingPage = Vm.create(options.appView, 'GamePage', RankingPage,
+                        {collection: playerCollection});
+
+                    // render and make jquery enhance the html
+                    rankingPage.enhance();
+                    PlayerController.processView(options.appView);
+                });
+            });
+
         }
     });
 

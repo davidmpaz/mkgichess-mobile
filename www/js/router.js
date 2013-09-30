@@ -12,7 +12,8 @@ define([
             'settings': 'settings',
             'help': 'help',
             'home': 'home',
-            'profile': 'profile',
+            'profile/:id': 'profile',
+            'ranking': 'ranking',
 
             // Default - catch all
             '*actions': 'defaultAction'
@@ -48,6 +49,11 @@ define([
         router.on('route:settings', function () {
             require(['controllers/playerController'], function (PlayerController) {
                 PlayerController.handleSettingsRoute({appView: appView});
+            });
+        });
+        router.on('route:ranking', function () {
+            require(['controllers/playerController'], function (PlayerController) {
+                PlayerController.handleRankingRoute({appView: appView});
             });
         });
         router.on('route:help', function () {
