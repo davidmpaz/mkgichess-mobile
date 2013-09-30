@@ -31,9 +31,9 @@ define([
                 });
             });
         });
-        router.on('route:profile', function(){
+        router.on('route:profile', function(id){
             require(['controllers/playerController'], function (PlayerController) {
-                PlayerController.handleProfileRoute({appView: appView});
+                PlayerController.handleProfileRoute({appView: appView, id: id});
             });
         });
         router.on('route:home', function () {

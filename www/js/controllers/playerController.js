@@ -34,6 +34,8 @@ define([
             // stop here ! we are going to settings
             if (!settings) return false;
 
+            if (options.id != null) settings.identifier = options.id;
+
             require([
                 'models/player',
                 'views/player/profile',
@@ -41,15 +43,20 @@ define([
             ], function (PlayerModel, ProfilePage, Rest) {
 
                 Rest.getPlayer(settings, function (player) {
-                    var player = _.extend(settings, player);
+
                     // server url doesnt come from remote
                     player.set('server', settings.server);
+                    player.set('showPrivate', options.id == null);
+                    player.set('gender', player.get('gender') == 'f');
 
                     var profilePage = Vm.create(options.appView, 'ProfilePage', ProfilePage,
                         {model: player});
 
-                    // update settings/profile
-                    self.saveSettings(player.toJSON());
+                    // not viewing another player
+                    if (options.id == null) {
+                        // update settings/profile
+                        self.saveSettings(player.toJSON());
+                    }
 
                     // render and make jquery enhance the html
                     profilePage.enhance();

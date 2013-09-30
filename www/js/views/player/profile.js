@@ -23,9 +23,6 @@ define([
             this.model.on('change', this.enhance, this);
         },
         render: function () {
-            var settings = CordovaApp.loadSettings();
-            this.model.set('server', settings.server);
-            this.model.set('gender', this.model.get('gender') == 'f');
 
             this.$el.html(Mustache.render(profilePageTemplate, this.model.toJSON()));
 
