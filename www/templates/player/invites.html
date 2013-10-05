@@ -1,0 +1,64 @@
+<h1>Invitations Sent</h1>
+
+<div id="invites-list" data-role="collapsible-set" data-theme="c" data-content-theme="d">
+    {{ #invitations }}
+    <div id="{{ id }}" data-role="collapsible">
+        <h3>{{ email }}</h3>
+
+        <p>
+            Sent on: {{ date }}
+
+        <div data-role="fieldcontain" data-type="horizontal">
+            <!--<img src="{{ #your_turn }}img/lamp_green.png{{ /your_turn }}
+              {{ ^your_turn }}img/lamp_red.png{{ /your_turn }}"
+                 class="ui-li-icon ui-corner-none">-->
+            Opened: <img src="{{ #opened }}img/lamp_green.png{{ /opened }}
+              {{ ^opened }}img/lamp_red.png{{ /opened }}"
+                         class="ui-li-icon ui-corner-all">
+            Clicked: <img src="{{ #clicked }}img/lamp_green.png{{ /clicked }}
+              {{ ^clicked }}img/lamp_red.png{{ /clicked }}"
+                          class="ui-li-icon ui-corner-all">
+            Joined: <img src="{{ #joined }}img/lamp_green.png{{ /joined }}
+              {{ ^joined }}img/lamp_red.png{{ /joined }}"
+                         class="ui-li-icon ui-corner-all">
+
+            {{ #retried }}
+            <a href="#resend-invite" data-role="button" data-icon="repeat" data-theme="a"
+               data-mini="true" data-inline="true">Retry</a>
+            {{ /retried }}
+            {{ #iplayer }}
+            <a href="#profile/{{ iplayer }}" data-role="button" data-icon="user"
+               data-theme="a"
+               data-mini="true" data-inline="true">Player Profile</a>
+            {{ /iplayer }}
+            <a href="#delete-invite" data-role="button" data-icon="trash" data-theme="a"
+               data-mini="true" data-inline="true">Delete</a>
+
+        </div>
+        </p>
+    </div>
+    {{ /invitations }}
+
+    {{ ^invitations }}
+    <div id="{{ id }}" data-role="collapsible">
+        <h3><a href="#/">There is no invitations yet..</a></h3>
+
+        <p>I told you... Yo have not made any :)</p>
+    </div>
+    {{ /invitations }}
+</div>
+
+<h1>Invite a Friend</h1>
+
+<form id="invite-form">
+
+    <label for="name" class="ui-hidden-accessible">Name:</label>
+    <input type="text" name="name" id="name" placeholder="Name" value="" data-mini="true">
+
+    <label for="email" class="ui-hidden-accessible">Email:</label>
+    <input type="email" name="email" id="email" placeholder="Email" value=""
+           data-mini="true">
+
+    <a href="#send-invite" data-role="button" data-icon="share-sign" data-theme="a"
+       id="more-menu-btn">Send Invitation</a>
+</form>

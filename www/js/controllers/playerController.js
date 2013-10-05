@@ -113,7 +113,29 @@ define([
                     PlayerController.processView(options.appView);
                 });
             });
+        },
+        handleInvitationRoute: function (options) {
+            var self = this;
 
+            require([
+                'views/player/invites',
+                'libs/cordova/restclient',
+
+            ], function (InvitesPage, Rest) {
+
+                var settings = self.checkSettings();
+                // stop here ! we are going to settings
+                if (!settings) return false;
+
+                Rest.getPlayerInvitations(settings, function (invitations) {
+                    var invitesPage = Vm.create(options.appView, 'InvitePage', InvitesPage,
+                        {collection: invitations});
+
+                    // render and make jquery enhance the html
+                    invitesPage.enhance();
+                    PlayerController.processView(options.appView);
+                });
+            });
         }
     });
 

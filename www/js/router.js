@@ -15,6 +15,7 @@ define([
             'profile': 'profile',
             'profile/:id': 'profile',
             'ranking': 'ranking',
+            'invitation': 'invitation',
 
             // Default - catch all
             '*actions': 'defaultAction'
@@ -55,6 +56,11 @@ define([
         router.on('route:ranking', function () {
             require(['controllers/playerController'], function (PlayerController) {
                 PlayerController.handleRankingRoute({appView: appView});
+            });
+        });
+        router.on('route:invitation', function () {
+            require(['controllers/playerController'], function (PlayerController) {
+                PlayerController.handleInvitationRoute({appView: appView});
             });
         });
         router.on('route:help', function () {

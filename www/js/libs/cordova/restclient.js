@@ -71,7 +71,7 @@ define([
             });
         },
         /**
-         * Get a player by username from REST endpoint
+         * Get a player games by username from REST endpoint
          * @param fn
          * @param options
          */
@@ -85,6 +85,25 @@ define([
                     // fill with some sensible defaults
                     var collection = new GameCollection(games);
                     if (typeof fn == 'function') fn(collection);
+                },
+                error: function (/*xhr, textStatus, errorThrown*/) {
+                    if (typeof fn == 'function') fn(false);
+                }
+            });
+        },
+        /**
+         * Get a player invitations by username from REST endpoint
+         * @param fn
+         * @param options
+         */
+        getPlayerInvitations: function (options, fn) {
+
+            $.ajax({
+                url: options.server + '/user/' + options.identifier + '/invitations',
+                type: 'get',
+                dataType: 'json',
+                success: function (invitations) {
+                    if (typeof fn == 'function') fn(invitations);
                 },
                 error: function (/*xhr, textStatus, errorThrown*/) {
                     if (typeof fn == 'function') fn(false);
