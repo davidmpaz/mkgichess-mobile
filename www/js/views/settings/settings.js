@@ -63,7 +63,7 @@ define([
                     if (result) {
                         // resquest user and save settings
                         Rest.getPlayer(player.toJSON(), function (remotePlayer) {
-                            if(remotePlayer) {
+                            if (remotePlayer) {
                                 remotePlayer.set('server', player.get('server'));
                                 CordovaApp.saveSettings(remotePlayer.toJSON());
                                 Backbone.history.navigate('#/home');

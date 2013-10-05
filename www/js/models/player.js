@@ -12,7 +12,10 @@ define([
                 return (this.gender == 'm' || !this.gender) ? 'Male' : 'Female';
             },
             countryLong: function () {
-                return Countries.getCountryName(this.country.toUpperCase())
+                if (this.country != null) {
+                    return Countries.getCountryName(this.country.toUpperCase());
+                }
+                return null;
             },
             score_games: function () {
                 return parseInt(this.score_wins) + parseInt(this.score_draws) + parseInt(this.score_losses);
@@ -21,7 +24,7 @@ define([
         initialize: function () {
         },
         validate: function (attrs) {
-            if(attrs.identifier == '' || attrs.password == '' || attrs.server == '' || attrs.server == null) {
+            if (attrs.identifier == '' || attrs.password == '' || attrs.server == '' || attrs.server == null) {
                 return 'Empty player instance, at least username, password and'
                     + ' server api url must be defined for a player';
             }

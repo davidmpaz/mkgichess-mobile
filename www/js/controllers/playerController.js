@@ -48,6 +48,7 @@ define([
                     player.set('server', settings.server);
                     player.set('showPrivate', options.id == null);
                     player.set('gender', player.get('gender') == 'f');
+                    player.set('showPrivate', options.id == null);
 
                     var profilePage = Vm.create(options.appView, 'ProfilePage', ProfilePage,
                         {model: player});

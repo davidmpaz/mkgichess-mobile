@@ -13,12 +13,12 @@ define([
         render: function () {
             $(this.el).html(footerTemplate);
         },
-        events:{
+        events: {
             'click #more-menu-btn': 'showMenu'
         },
         showMenu: function (ev) {
             ev.preventDefault();
-            $( "#more-menu" ).popup("open");
+            $("#more-menu").popup("open");
         }
     });
 

@@ -10,13 +10,12 @@ define([
     'views/player/stats',
     'views/player/country',
     'text!templates/player/profile.html'
-], function (Vm, CordovaApp, $, Backbone, BaseView, Mustache, PlayerModel, Countries,
-             StatView, CountryView, profilePageTemplate) {
+], function (Vm, CordovaApp, $, Backbone, BaseView, Mustache, PlayerModel, Countries, StatView, CountryView, profilePageTemplate) {
 
     var ProfilePage = BaseView.extend({
         el: '.page',
         events: {
-            'click #save-profile' : 'saveUserData'
+            'click #save-profile': 'saveUserData'
         },
         initialize: function () {
             // assume the model instance is already attached when creating this view

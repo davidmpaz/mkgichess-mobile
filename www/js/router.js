@@ -25,14 +25,14 @@ define([
         var appView = options.appView;
         var router = new AppRouter(options);
 
-        router.on('route:defaultAction', function(){
+        router.on('route:defaultAction', function () {
             require(['controllers/playerController'], function (PlayerController) {
                 PlayerController.handleDashboardRoute({
                     appView: appView, initialPage: true
                 });
             });
         });
-        router.on('route:profile', function(id){
+        router.on('route:profile', function (id) {
             require(['controllers/playerController'], function (PlayerController) {
                 PlayerController.handleProfileRoute({appView: appView, id: id});
             });
@@ -64,7 +64,7 @@ define([
             });
         });
 
-        Backbone.history.start({ pushState : false });
+        Backbone.history.start({ pushState: false });
     };
     return {
         initialize: initialize

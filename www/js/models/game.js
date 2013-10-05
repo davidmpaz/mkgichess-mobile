@@ -11,11 +11,11 @@ define([
         initialize: function () {
         },
         validate: function (attrs) {
-            if(attrs.game_id == null) {
+            if (attrs.game_id == null) {
                 return 'Game without id instance. All games must have a game_id value';
             }
 
-            if(attrs.opponent == null) {
+            if (attrs.opponent == null) {
                 return 'Game without opponent instance. All games must have an opponent';
             }
         }
