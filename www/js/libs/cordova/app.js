@@ -25,26 +25,10 @@ define([
         onDeviceReady: function () {
             // do cordova stuff here
             document.addEventListener("menubutton", CordovaApp.onMenuPressed, false);
-            CordovaApp.loadSettings();
+            DataStore.loadSettings();
         },
         onMenuPressed: function () {
             $("#more-menu").click();
-        },
-        saveSettings: function (settings) {
-            // check settings values before use JSON
-            if(settings !== null && typeof settings !== 'undefined') {
-                window.localStorage.setItem('settings', window.JSON.stringify(settings));
-            }
-        },
-        loadSettings: function () {
-
-            var settings = window.localStorage.getItem("settings");
-
-            if(settings !== null){
-                settings = window.JSON.parse(settings);
-            }
-
-            return settings;
         }
     };
 

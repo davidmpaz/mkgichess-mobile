@@ -2,8 +2,9 @@ define([
     'vm',
     'jquery',
     'backbone',
+    'libs/cordova/datastore',
     'controllers/BaseController'
-], function (Vm, $, Backbone, BaseController) {
+], function (Vm, $, Backbone, Datastore, BaseController) {
 
     var GameController = BaseController.extend({
 

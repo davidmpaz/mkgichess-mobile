@@ -2,8 +2,9 @@
 define([
     'jquery',
     'underscore',
-    'app'
-], function ($, _, CordovaApp) {
+    'backbone',
+    'libs/cordova/datastore'
+], function ($, _, Backbone, Datastore) {
 
     function extend(object) {
         return _.extend(this, object);
@@ -33,7 +34,7 @@ define([
     };
 
     function checkSettings() {
-        var settings = CordovaApp.loadSettings();
+        var settings = Datastore.loadSettings();
 
         // if not initial page we already saved the data
         if (settings == null) {
@@ -46,11 +47,11 @@ define([
     };
 
     function saveSettings(settings) {
-        CordovaApp.saveSettings(settings);
+        Datastore.saveSettings(settings);
     };
 
     function loadSettings() {
-        return CordovaApp.loadSettings();
+        return Datastore.loadSettings();
     }
 
     return {
