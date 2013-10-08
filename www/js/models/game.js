@@ -6,7 +6,7 @@ define([
         idAttribute: "game_id",
         defaults: {
             "game_id": null, "opponent": "", "your_turn": false, "move_count": 0,
-            "pending_move": "", pgn: ""
+            "pending_move": "", pgn: "", 'can_delete': false, 'abandoned': false
         },
         initialize: function () {
         },

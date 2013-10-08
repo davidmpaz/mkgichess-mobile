@@ -83,6 +83,10 @@ h1 {
     text-align:center;
 }
 
+h2, h3 {
+    text-align: center;
+}
+
 /* Arrow only buttons in the header. */
 .ui-header .ui-btn {
     background: none;
@@ -120,4 +124,9 @@ a.jqm-deeplink {
     from { opacity: 1.0; }
     50% { opacity: 0.4; }
     to { opacity: 1.0; }
+}
+
+/*Push both buttons to the right */
+div#history-navbar a#forward {
+    margin-left: 52%;
 }

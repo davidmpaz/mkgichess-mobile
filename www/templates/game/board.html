@@ -1,0 +1,43 @@
+<div id="history-navbar" data-role="fieldcontain" data-theme="a">
+    <a href="#" data-role="button" data-iconpos="notext" data-icon="fast-backward"
+       data-shadow="false" data-iconshadow="false" id="reset" data-inline="true"></a>
+    <!--First Move-->
+    <a href="#" data-role="button" data-iconpos="notext" data-icon="step-backward"
+       data-shadow="false" data-iconshadow="false" id="back" data-inline="true"></a>
+    <!--Move Backward-->
+
+    <a href="#" data-role="button" data-iconpos="notext" data-icon="step-forward"
+       data-shadow="false" data-iconshadow="false" id="forward" data-inline="true"></a>
+    <!--Move Forward-->
+
+    <a href="#" data-role="button" data-iconpos="notext" data-icon="fast-forward"
+       data-shadow="false" data-iconshadow="false" id="end" data-inline="true"></a>
+    <!--Last Move-->
+
+</div>
+
+<div id="board"></div>
+{{#your_turn}}
+<div id="commands" data-role="fieldcontain" data-type="horizontal" data-mini="true">
+    <input type="text" name="chessmove" id="chessmove" type="text"
+           data-inline="true"/>
+    <a href="#" id="makemove" data-role="button" data-icon="ok" data-iconpos="left"
+       data-inline="true" data-mini="true">Move</a>
+
+</div>
+<div id="commands-extra" data-role="controlgroup" data-type="horizontal"
+     data-mini="true">
+    <a href="#" data-role="button" data-icon="question" data-iconpos="left"
+       data-inline="true">Draw</a>
+    <a href="#" data-role="button" data-icon="flag-alt" data-iconpos="left"
+       data-inline="true">Resign</a>
+    {{#can_delete}}
+    <a href="#" data-role="button" data-icon="trash" data-iconpos="left"
+       data-inline="true">Delete</a>
+    {{/can_delete}}
+    {{#abandoned}}
+    <a href="#" data-role="button" data-icon="remove" data-iconpos="left"
+       data-inline="true">Abandoned</a>
+    {{/abandoned}}
+</div>
+{{/your_turn}}

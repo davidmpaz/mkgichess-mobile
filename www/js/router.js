@@ -16,6 +16,7 @@ define([
             'profile/:id': 'profile',
             'ranking': 'ranking',
             'invitation': 'invitation',
+            'game/:id': 'game',
 
             // Default - catch all
             '*actions': 'defaultAction'
@@ -69,7 +70,11 @@ define([
                 helpPage.fadeIn();
             });
         });
-
+        router.on('route:game', function (id) {
+            require(['controllers/gameController'], function (GameController) {
+                GameController.handleGameRoute({ appView: appView, game_id: id });
+            });
+        });
         Backbone.history.start({ pushState: false });
     };
     return {

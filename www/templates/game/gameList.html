@@ -1,7 +1,7 @@
 <ul id="game-list" data-role="listview" data-count-theme="c" data-inset="true">
 
     {{ #games }}
-    <li><a href="#/edit.html?id={{ game_id }}">
+    <li><a href="#/game/{{ game_id }}">
         <img src="{{ #your_turn }}img/lamp_green.png{{ /your_turn }}
               {{ ^your_turn }}img/lamp_red.png{{ /your_turn }}"
              class="ui-li-icon ui-corner-none">{{ opponent }}
