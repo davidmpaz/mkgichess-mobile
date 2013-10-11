@@ -7,9 +7,9 @@ require.config({
         jqm: 'libs/jquery/jquery.mobile',
         jqmc: 'libs/jquery/jquery.mobile.config', // jquery mobile configuration
         jqmn: 'libs/jquery/jqmNavigator',
-        underscore: 'libs/underscore/underscore-min', // https://github.com/amdjs
+        underscore: 'libs/underscore/underscore-amd', // https://github.com/amdjs
         lodash: 'libs/lodash/lodash', // alternative to underscore
-        backbone: 'libs/backbone/backbone-min', // https://github.com/amdjs
+        backbone: 'libs/backbone/backbone-amd', // https://github.com/amdjs
         mustache: 'libs/mustache/mustache', // template engine
 
         // Require.js plugins
