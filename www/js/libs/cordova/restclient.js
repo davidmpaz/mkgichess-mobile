@@ -53,7 +53,7 @@ define([
             });
         },
         /**
-         * Get a player by username from REST endpoint
+         * Test REST endpoint availability
          * @param fn
          * @param options
          */

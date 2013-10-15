@@ -71,8 +71,9 @@ define([
 
             require([
                 'models/player',
-                'views/settings/settings'
-            ], function (PlayerModel, SettingsPage) {
+                'views/settings/settings',
+                'libs/cordova/restclient'
+            ], function (PlayerModel, SettingsPage, Rest) {
 
                 // get player and view
                 var settings = self.loadSettings(),
@@ -84,6 +85,31 @@ define([
 
                 var settingsPage = Vm.create(options.appView, 'SettingsPage', SettingsPage,
                     {model: player});
+
+                // add listener to save user settings
+                settingsPage.listenTo(settingsPage, 'settings:save', function (player) {
+
+                    var settings = self.loadSettings(),
+                        oldsettings = (settings == null ? {} : settings);
+                    // save new settings merged with old ones if any
+                    player.set(_.extend(oldsettings, player.toJSON()));
+
+                    // only save if valid player and valid url
+                    Rest.testServer({server: player.get('server')}, function (result) {
+                        if (result) {
+                            // request user and save settings
+                            Rest.getPlayer(player.toJSON(), function (remotePlayer) {
+                                if (remotePlayer) {
+                                    remotePlayer.set('server', player.get('server'));
+                                    self.saveSettings(remotePlayer.toJSON());
+                                    Backbone.history.navigate('#/home');
+                                }
+                            });
+                        } else {
+                            self.showError("Server API url is not valid or server is not reachable");
+                        }
+                    });
+                });
 
                 // render and make jquery enhance the html
                 settingsPage.enhance();
