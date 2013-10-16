@@ -21,6 +21,8 @@ define([
                 url: options.server + '/user/' + options.identifier,
                 type: 'get',
                 dataType: 'json',
+                username: options.identifier,
+                password: options.password,
                 success: function (user) {
                     // fill with some sensible defaults
                     var player = new PlayerModel(user);
@@ -42,6 +44,8 @@ define([
                 url: options.server + '/user/ranking',
                 type: 'get',
                 dataType: 'json',
+                username: options.identifier,
+                password: options.password,
                 success: function (users) {
                     // fill with some sensible defaults
                     var players = new PlayerCollection(users);
@@ -81,6 +85,8 @@ define([
                 url: options.server + '/user/' + options.identifier + '/games',
                 type: 'get',
                 dataType: 'json',
+                username: options.identifier,
+                password: options.password,
                 success: function (games) {
                     // fill with some sensible defaults
                     var collection = new GameCollection(games);
@@ -102,6 +108,8 @@ define([
                 url: options.server + '/user/' + options.identifier + '/invitations',
                 type: 'get',
                 dataType: 'json',
+                username: options.identifier,
+                password: options.password,
                 success: function (invitations) {
                     if (typeof fn == 'function') fn(invitations);
                 },
