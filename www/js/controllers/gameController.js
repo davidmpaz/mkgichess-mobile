@@ -60,7 +60,7 @@ define([
                 });
 
                 settings.game_id = options.game_id;
-                Event.on('board:ondrop', function (payload) {
+                Event.once('board:ondrop', function (payload) {
                     // post move to REST api
                     Rest.makeMove(settings, payload.moveString, function (err) {
                         // handle error
