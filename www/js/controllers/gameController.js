@@ -43,8 +43,8 @@ define([
                 'models/game',
                 'views/game/board',
                 'libs/cordova/datastore',
-
-            ], function (GameModel, BoardPage, Datastore) {
+                'libs/cordova/restclient'
+            ], function (GameModel, BoardPage, Datastore, Rest) {
 
                 var settings = self.checkSettings();
                 // stop here ! we are going to settings
@@ -58,12 +58,17 @@ define([
                     gamePage.enhance();
                     GameController.processView(options.appView);
                 });
-            });
 
-            Event.on('board:ondrop', function (payload) {
-                // post move to REST api
-            });
+                settings.game_id = options.game_id;
+                Event.on('board:ondrop', function (payload) {
+                    // post move to REST api
+                    Rest.makeMove(settings, payload.moveString, function (err) {
+                        // handle error
+                        alert("Could not make the move: " + err);
+                    });
 
+                });
+            });
         }
     });
 

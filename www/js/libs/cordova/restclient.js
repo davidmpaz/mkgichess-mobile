@@ -117,6 +117,22 @@ define([
                     if (typeof fn == 'function') fn(false);
                 }
             });
+        },
+        /**
+         *
+         */
+        makeMove: function (options, move, fn) {
+            $.ajax({
+                url: options.server + '/match/' + options.game_id,
+                data: {move: move, identifier: options.identifier},
+                type: 'put',
+                dataType: 'json',
+                username: options.identifier,
+                password: options.password,
+                error: function (xhr, textStatus, errorThrown) {
+                    if (typeof fn == 'function') fn(errorThrown);
+                }
+            });
         }
     };
 
