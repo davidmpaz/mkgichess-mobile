@@ -61,7 +61,11 @@ define([
             // illegal move
             if (move === null) return 'snapback';
 
-            moveString += source + '-' + target;
+            // check capture
+            var l = '-';
+            if(typeof move.captured !== 'undefined') l = 'x';
+
+            moveString += source + l + target;
 
             // dispath event board:ondrop with moveString as payload
             Event.trigger('board:ondrop', {move: move, moveString: moveString});

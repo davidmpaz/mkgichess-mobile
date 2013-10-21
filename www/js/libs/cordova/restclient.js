@@ -119,7 +119,11 @@ define([
             });
         },
         /**
+         * Put the move the server.
          *
+         * @param options object most of the params comes from here
+         * @param move string Move as required by mkgi chess club
+         * @param fn callback error callback
          */
         makeMove: function (options, move, fn) {
             $.ajax({
